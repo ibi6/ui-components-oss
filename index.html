@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>动态 UI 组件集</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <button class="themebtn" id="themeBtn" aria-label="切换深色或浅色">&#9680;</button>
+  <header class="hero">
+    <span class="eyebrow"><i></i>纯 HTML · CSS · JS，零依赖</span>
+    <h1>动态 <em>UI</em> 组件集</h1>
+    <p class="lead">按钮、加载、表单、导航、图表、3D、小游戏，以及命令面板、数据表格这类完整组件。移动鼠标、点击、拖动，每个都能玩。</p>
+    <div class="stats"><span><b>236</b> 手写组件</span><span><b>576</b> 参数变体</span><span>每个组件都能看代码</span><span>浅色 / 深色</span></div>
+    <div class="hero-actions"><a href="#gallery" class="btn hero-btn">浏览组件图鉴 ↓</a><button class="btn ghost hero-btn" id="heroThemeBtn">切换主题外观</button></div>
+  </header>
+  <div class="grid">
+    <section class="box wide">
+      <h2>倾斜光斑卡片</h2>
+      <div class="stage">
+        <div class="tilt" id="tilt">
+          <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="glow"></div>
+          <div><h3>晨光计划</h3><p>每天 10 分钟，让习惯慢慢长出来。</p></div>
+          <div class="days">
+            <i class="on" style="--i:0"></i><i class="on" style="--i:1"></i><i class="on" style="--i:2"></i><i class="on" style="--i:3"></i><i class="on" style="--i:4"></i><i></i><i></i>
+            <span>连续 5 天</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>流体按钮</h2>
+      <div class="row">
+        <button class="btn">开始使用</button>
+        <button class="btn ghost">了解更多</button>
+        <button class="btn" id="submit"><span class="sp"></span><svg class="ck" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span id="sl">提交订单</span></button>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>弹性开关</h2>
+      <label class="sw"><span>消息通知</span><input type="checkbox" checked><span class="trk"></span></label>
+      <label class="sw"><span>深色模式</span><input type="checkbox" id="dark"><span class="trk"></span></label>
+      <label class="sw"><span>自动保存</span><input type="checkbox"><span class="trk"></span></label>
+    </section>
+
+    <section class="box">
+      <h2>滑动标签页</h2>
+      <div class="tabs" id="tabs" role="tablist">
+        <span class="ind" id="ind"></span>
+        <button role="tab" aria-selected="true">概览</button>
+        <button role="tab" aria-selected="false">活动</button>
+        <button role="tab" aria-selected="false">设置</button>
+      </div>
+      <p class="pane" id="pane"></p>
+    </section>
+
+    <section class="box">
+      <h2>进度环</h2>
+      <div class="ringbox">
+        <div class="ring">
+          <svg width="128" height="128" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6c4dff"/><stop offset="1" stop-color="#19c3b1"/></linearGradient></defs>
+          <circle cx="64" cy="64" r="52" fill="none" stroke="var(--line)" stroke-width="12"/>
+          <circle id="arc" cx="64" cy="64" r="52" fill="none" stroke="url(#g)" stroke-width="12" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg>
+          <b><span id="num">0</span><small>%</small></b>
+        </div>
+        <div style="flex:1;min-width:140px"><input type="range" id="rng" min="0" max="100" value="72" aria-label="完成进度"></div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>加载动画</h2>
+      <div class="loaders">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="orbit"></div>
+        <div class="eq"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>通知提示</h2>
+      <div class="row"><button class="btn" id="save">保存更改</button></div>
+      <p style="margin:0;color:var(--mute);font-size:14px">通知会从右下角弹入，三秒后自动收起，点击可立即关闭。</p>
+    </section>
+
+    <section class="box"><h2>骨架屏</h2>
+      <div class="skel"><div class="sk" style="width:52px;height:52px;border-radius:50%"></div><div style="flex:1;display:grid;gap:10px"><div class="sk" style="height:14px;width:70%"></div><div class="sk" style="height:12px"></div></div></div>
+      <div class="sk" style="height:64px"></div>
+    </section>
+
+    <section class="box"><h2>手风琴</h2>
+      <div class="acc" id="acc">
+        <div class="it open"><button>动画会影响性能吗？</button><div class="bd"><div><p>优先使用 transform 和 opacity，浏览器可以交给 GPU 处理。</p></div></div></div>
+        <div class="it"><button>怎么适配深色模式？</button><div class="bd"><div><p>把颜色写成 CSS 变量，在深色下整体替换即可。</p></div></div></div>
+        <div class="it"><button>可以关掉动画吗？</button><div class="bd"><div><p>系统开启“减少动态效果”后，所有动画会自动停用。</p></div></div></div>
+      </div>
+    </section>
+
+    <section class="box"><h2>弹窗</h2>
+      <div class="row"><button class="btn" id="om">打开弹窗</button></div>
+      <div class="mask" id="mk" role="dialog" aria-modal="true"><div class="dlg"><h3>删除这条记录？</h3><p>删除后无法恢复，相关评论也会一并移除。</p><div class="row" style="justify-content:flex-end"><button class="btn ghost" data-x>取消</button><button class="btn" data-x>确认删除</button></div></div></div>
+    </section>
+
+    <section class="box wide"><h2>轮播图</h2>
+      <div class="car" id="car"><div class="ct" id="ct">
+        <div style="background:linear-gradient(120deg,#6c4dff,#19c3b1)">清晨的第一缕光</div>
+        <div style="background:linear-gradient(120deg,#ff7a59,#ffc64d)">午后慢下来的时间</div>
+        <div style="background:linear-gradient(120deg,#1c1550,#6c4dff)">夜里安静的灯</div>
+      </div><div class="cd" id="cd"><i></i><i></i><i></i></div></div>
+    </section>
+
+    <section class="box"><h2>图标交互</h2>
+      <div class="row" style="gap:18px">
+        <button class="burger" id="bg" aria-label="菜单"><i></i><i></i><i></i></button>
+        <button class="like" id="lk" aria-label="点赞">♥</button>
+        <div class="stars" id="st"></div>
+        <button class="ic" data-tip="复制链接" aria-label="复制链接">⧉</button>
+      </div>
+    </section>
+
+    <section class="box"><h2>浮动标签输入框</h2>
+      <div class="fld"><input id="f1" placeholder=" "><label for="f1">邮箱地址</label></div>
+      <div class="fld"><input id="f2" placeholder=" "><label for="f2">昵称</label></div>
+    </section>
+
+    <section class="box"><h2>下拉菜单与标签</h2>
+      <div class="dd" id="dd"><button class="btn ghost"><span class="lb">按时间排序</span> ▾</button>
+        <div class="menu"><button>按时间排序</button><button>按热度排序</button><button>按评分排序</button></div></div>
+      <div class="row" style="margin-top:40px"><button class="chip">设计</button><button class="chip">前端</button><button class="chip">动效</button></div>
+    </section>
+
+    <section class="box"><h2>步骤条</h2>
+      <div class="stp" id="stp"><i></i><span>1</span><span>2</span><span>3</span><span>4</span></div>
+      <div class="row"><button class="btn ghost" id="prv">上一步</button><button class="btn" id="nxt">下一步</button></div>
+    </section>
+
+    <section class="box"><h2>旋转渐变边框与流光文字</h2>
+      <div class="gb"><div><div class="gt">动起来的界面</div><p style="margin:8px 0 0;color:var(--mute);min-height:1.6em"><span id="tw"></span></p></div></div>
+    </section>
+
+    <section class="box"><h2>跑马灯</h2>
+      <div class="mq" id="mq"><div><span>React</span><span>Vue</span><span>Svelte</span><span>CSS 动画</span><span>SVG</span><span>Canvas</span><span>WebGL</span><span>Tailwind</span></div></div>
+      <p style="margin:0;color:var(--mute);font-size:14px">悬停时暂停滚动。</p>
+    </section>
+
+    <section class="box"><h2>柱状图</h2>
+      <div class="bars" id="bars"></div>
+      <div class="row"><button class="btn ghost" id="rp">重播动画</button></div>
+    </section>
+
+    <section class="box"><h2>磁吸按钮</h2>
+      <div class="mw" id="mw"><button class="btn">靠近我</button></div>
+    </section>
+  </div>
+  <section class="box gallery" id="gallery">
+    <div class="gal-head"><h2>组件图鉴</h2><p>按类别整理的小组件。每个组件右上角都有 &lt;/&gt; 按钮，点开可以看代码并一键复制。</p></div>
+    <div id="gal"></div>
+  </section>
+  <p class="foot">纯 HTML / CSS / JS · MIT 许可</p>
+  <button class="back-top" id="backTop" aria-label="回到顶部" title="回到顶部">↑</button>
+</div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
