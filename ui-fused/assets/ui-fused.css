@@ -1,0 +1,235 @@
+:root {
+  /* ---- 类型刻度（fluid，360px -> 1920px 插值）---- */
+  --step-xs: clamp(0.6944rem, 0.6793rem + 0.0672vw, 0.76rem);
+  --step-sm: clamp(0.8333rem, 0.8064rem + 0.1197vw, 0.95rem);
+  --step-base: clamp(1rem, 0.9567rem + 0.1923vw, 1.188rem);
+  --step-lg: clamp(1.2rem, 1.1344rem + 0.2917vw, 1.484rem);
+  --step-xl: clamp(1.44rem, 1.3441rem + 0.4261vw, 1.855rem);
+  --step-2xl: clamp(1.728rem, 1.5915rem + 0.6065vw, 2.319rem);
+  --step-3xl: clamp(2.074rem, 1.8831rem + 0.8467vw, 2.899rem);
+  --step-4xl: clamp(2.488rem, 2.2262rem + 1.1648vw, 3.624rem);
+
+  /* ---- 留白（布局级 fluid；组件内用下面的固定 --space-*)---- */
+  --gutter: clamp(1rem, 0.6538rem + 1.5385vw, 2.5rem);
+  --flow-s: clamp(1.5rem, 1.3846rem + 0.5128vw, 2rem);
+  --flow-m: clamp(2rem, 1.6538rem + 1.5385vw, 3.5rem);
+  --flow-l: clamp(3rem, 2.3077rem + 3.0769vw, 6rem);
+  --flow-xl: clamp(4.5rem, 3.4615rem + 4.6154vw, 9rem);
+
+  /* ---- 表面与线条：三档足够，深度来自明度 + hairline ---- */
+  --bg:        light-dark(#f4f3ef, #0d0e10);
+  --surface:   light-dark(#ffffff, #151719);
+  --surface-2: light-dark(#f1f1ee, #1c1f22);
+  --line:        light-dark(rgb(16 18 22 / 0.11), rgb(255 255 255 / 0.09));
+  --line-strong: light-dark(rgb(16 18 22 / 0.16), rgb(255 255 255 / 0.16));
+
+  /* ---- 文字：恰好三档 ---- */
+  --text:   light-dark(#15171a, #ececee);
+  --text-2: light-dark(#575c64, #a4a9b2);
+  --text-3: light-dark(#868c96, #6e747e);
+
+  /* ---- 一个强调色（主题选色，soft/ink 派生，不手挑）---- */
+  --accent:      light-dark(oklch(0.56 0.16 255), oklch(0.74 0.14 255));
+  --accent-ink:  light-dark(#ffffff, #0d0e10);
+  --accent-soft: color-mix(in oklab, var(--accent) 12%, transparent);
+  --success: light-dark(oklch(0.58 0.14 155), oklch(0.78 0.14 155));
+  --danger:  light-dark(oklch(0.58 0.19 25), oklch(0.74 0.16 25));
+
+  /* ---- 组件内固定 4px 网格 ---- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+
+  /* ---- 圆角：内圆角 = 外圆角 − 内外 padding；≤4 档 ---- */
+  --radius-xs: 6px; --radius-s: 10px; --radius-m: 14px; --radius-l: 22px; --radius-pill: 999px;
+
+  /* ---- 阴影：两层结构（贴身 + 环境光）---- */
+  --shadow-1: 0 1px 3px rgb(16 18 22 / 0.09), 0 1px 1px rgb(16 18 22 / 0.05);
+  --shadow-2: 0 2px 4px rgb(16 18 22 / 0.05), 0 8px 24px rgb(16 18 22 / 0.08);
+  --shadow-3: 0 4px 8px rgb(16 18 22 / 0.06), 0 24px 56px rgb(16 18 22 / 0.14);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --measure: 66ch; /* CJK 正文改用 34em */
+
+  /* ---- Motion tokens：时长按行程与重要性选，不按口味 ---- */
+  --dur-instant: 90ms;   /* press、toggle、颜色变化 */
+  --dur-fast: 160ms;     /* hover、tooltip、小淡入 */
+  --dur-base: 260ms;     /* 大多数进出场、展开收起 */
+  --dur-slow: 420ms;     /* 面板、大布局位移 */
+  --dur-hero: 760ms;     /* 每视图唯一的 signature moment */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: linear(0, 0.074, 0.249, 0.462, 0.671, 0.849, 0.982, 1.068, 1.113, 1.126, 1.117, 1.095, 1.068, 1.042, 1.019, 1.002, 0.991, 0.986, 0.984, 0.985, 0.988, 0.991, 0.995, 0.998, 1, 1.001, 1.002, 1);
+  --ease-spring-soft: linear(0, 0.037, 0.127, 0.244, 0.37, 0.493, 0.606, 0.704, 0.787, 0.854, 0.906, 0.946, 0.974, 0.994, 1.007, 1.015, 1.019, 1.02, 1.019, 1.018, 1.015, 1.013, 1.01, 1.008, 1.006, 1.004, 1.003, 1);
+  --stagger: 55ms;
+  --reveal-distance: 14px;
+}
+
+/* 手动主题开关：<html data-theme="light|dark"> */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --shadow-1: 0 0 0 1px rgb(255 255 255 / 0.04);
+    --shadow-2: 0 8px 24px rgb(0 0 0 / 0.35);
+    --shadow-3: 0 24px 56px rgb(0 0 0 / 0.5);
+  }
+}
+:root[data-theme="dark"] {
+  --shadow-1: 0 0 0 1px rgb(255 255 255 / 0.04);
+  --shadow-2: 0 8px 24px rgb(0 0 0 / 0.35);
+  --shadow-3: 0 24px 56px rgb(0 0 0 / 0.5);
+}
+
+/* ---- Motion: reveal / stagger（包在 scripting gate 里，无 JS 时内容可见）---- */
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance));
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out);
+    transition-delay: calc(var(--i, 0) * var(--stagger));
+  }
+  .reveal.is-in { opacity: 1; transform: none; }
+}
+[data-stagger] > :nth-child(1) { --i: 0; }  [data-stagger] > :nth-child(2) { --i: 1; }
+[data-stagger] > :nth-child(3) { --i: 2; }  [data-stagger] > :nth-child(4) { --i: 3; }
+[data-stagger] > :nth-child(5) { --i: 4; }  [data-stagger] > :nth-child(6) { --i: 5; }
+[data-stagger] > :nth-child(7) { --i: 6; }  [data-stagger] > :nth-child(8) { --i: 7; }
+[data-stagger] > :nth-child(9) { --i: 8; }   [data-stagger] > :nth-child(10) { --i: 9; }
+[data-stagger] > :nth-child(11) { --i: 10; } [data-stagger] > :nth-child(12) { --i: 11; }
+
+/* ---- 交互反馈 ---- */
+.press { transition: transform var(--dur-instant) var(--ease-standard); }
+.press:active { transform: scale(0.97); }
+@media (hover: hover) {
+  .lift { transition: transform var(--dur-fast) var(--ease-out); }
+  .lift:hover { transform: translateY(-2px); }
+}
+
+/* ---- 高度 auto：grid rows 0fr -> 1fr ---- */
+.collapse { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-base) var(--ease-out); }
+.collapse[data-open] { grid-template-rows: 1fr; }
+.collapse > * { overflow: hidden; min-height: 0; }
+
+/* ---- 新插入元素入场（无需 JS）---- */
+@starting-style {
+  .enter { opacity: 0; transform: translateY(var(--reveal-distance)); }
+}
+.enter {
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+
+/* ---- Dialog / popover 出入场（含退场；配合 tokens 的 --dur-*）---- */
+dialog {
+  opacity: 0; transform: translateY(8px) scale(0.98);
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out),
+    overlay var(--dur-base) allow-discrete,
+    display var(--dur-base) allow-discrete;
+}
+dialog[open] { opacity: 1; transform: none; }
+@starting-style { dialog[open] { opacity: 0; transform: translateY(8px) scale(0.98); } }
+dialog::backdrop {
+  background: rgb(0 0 0 / 0);
+  transition: background var(--dur-base) var(--ease-out), overlay var(--dur-base) allow-discrete, display var(--dur-base) allow-discrete;
+}
+dialog[open]::backdrop { background: rgb(0 0 0 / 0.4); }
+@starting-style { dialog[open]::backdrop { background: rgb(0 0 0 / 0); } }
+
+/* ---- Skeleton shimmer（只动一个 transform）---- */
+.skeleton {
+  position: relative; overflow: hidden;
+  background: color-mix(in oklab, currentColor 8%, transparent);
+  border-radius: var(--radius-s, 8px);
+}
+.skeleton::after {
+  content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, currentColor 10%, transparent), transparent);
+  animation: shimmer 1.4s var(--ease-in-out) infinite;
+}
+@keyframes shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+/* ---- fade-in：内建安全版（显式 from/to，配内联 delay 使用）---- */
+.fade-in { animation: fade-in-key var(--dur-slow) var(--ease-out) both; }
+@keyframes fade-in-key { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .fade-in { animation: none; } }
+
+/* ---- Reduced motion：替换而不是删除（保留状态信息，去掉行程/循环）---- */
+@media (prefers-reduced-motion: reduce) {
+  :root { --reveal-distance: 0px; --dur-slow: 200ms; --dur-hero: 240ms; --stagger: 0ms; }
+  .skeleton::after, .ambient { animation: none; }
+  .press:active { transform: none; }
+  .lift:hover { transform: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---- 基础排版与原语（tidy）---- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scrollbar-gutter: stable; }
+body {
+  min-height: 100dvh; background: var(--bg); color: var(--text);
+  font: 400 var(--step-base) / 1.6 var(--font-sans);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+}
+button, input, textarea, select { font: inherit; color: inherit; }
+img, svg, video, canvas { display: block; max-inline-size: 100%; }
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; letter-spacing: -0.01em; }
+p, li { text-wrap: pretty; }
+code, pre { font-family: var(--font-mono); font-size: 0.92em; }
+::selection { background: var(--accent-soft); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: inherit; }
+
+
+/* ---- 有色表面：底色与文字成对给出，防"深底配深字"事故 ----
+   .tint-accent :is(b, strong) 用强调色加重；正文自动用 --tint-ink。
+   自定义时同步改 --tint-ink / --tint-muted 两个变量即可。 */
+.tint-accent {
+  --tint-bg: color-mix(in oklab, var(--accent) 9%, var(--surface));
+  --tint-ink: var(--text);
+  --tint-muted: var(--text-2);
+  background: var(--tint-bg); color: var(--tint-ink);
+  border-color: color-mix(in oklab, var(--accent) 28%, transparent);
+}
+.tint-accent :is(b, strong, h1, h2, h3) { color: var(--accent); }
+.tint-accent :is(p, span, time, small):not(.keep-ink) { color: var(--tint-muted); }
+
+/* 布局原语：间距由父级 gap 拥有 */
+.stack   { display: flex; flex-direction: column; gap: var(--gap, var(--space-4)); }
+.cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap, var(--space-2)); }
+.wrap    { inline-size: min(100% - 2 * var(--gutter), var(--wrap, 80rem)); margin-inline: auto; }
+.grid-auto { display: grid; gap: var(--gap, var(--space-4)); grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min, 16rem)), 1fr)); }
+.scroller { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; padding-block-end: var(--space-2); }
+
+/* 卡片：表面 + hairline + 一个圆角 + 一档阴影，不再叠加 */
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-m); box-shadow: var(--shadow-1); padding: var(--space-4);
+}
+
+/* 按钮：40px 高，完整状态 */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  block-size: 40px; padding-inline: var(--space-4);
+  border: 1px solid var(--line-strong); border-radius: var(--radius-s);
+  background: var(--surface); color: var(--text); font-weight: 500; cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard);
+}
+.btn:hover { background: var(--surface-2); }
+.btn[data-variant="primary"] { background: var(--accent); border-color: transparent; color: var(--accent-ink); }
+.btn[data-variant="primary"]:hover { background: color-mix(in oklab, var(--accent) 88%, black); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.muted { color: var(--text-2); }
+.faint { color: var(--text-3); }
+.visually-hidden { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
