@@ -17,7 +17,7 @@ sb.addEventListener('click',()=>{if(sb.classList.contains('busy')||sb.classList.
   setTimeout(()=>{sb.classList.replace('busy','done');sl.textContent='已提交';setTimeout(()=>{sb.classList.remove('done');sl.textContent='提交订单'},1500)},1400)});
 // 深色模式开关
 const root=document.documentElement,dk=$('#dark');
-const savedTheme=localStorage.getItem('ui_theme');
+let savedTheme=null;try{savedTheme=localStorage.getItem('ui_theme')}catch(_){}
 if(savedTheme){dk.checked=savedTheme==='dark';root.dataset.theme=savedTheme;}
 else{dk.checked=matchMedia('(prefers-color-scheme: dark)').matches;}
 const applyTheme=d=>{const t=d?'dark':'light';dk.checked=d;root.dataset.theme=t;try{localStorage.setItem('ui_theme',t)}catch(_){}};
@@ -409,7 +409,7 @@ const srcOf=cell=>{
  const els=kids.flatMap(k=>[k,...k.querySelectorAll('*')]),tok=new Set();
  els.forEach(e=>{e.classList.forEach(c=>{if(c.length>1&&!STATE.includes(c))tok.add('.'+c)});if(e.id)tok.add('#'+e.id);for(const a of e.attributes)if(a.name.startsWith('data-'))tok.add('['+a.name+(a.value?"='"+a.value+"'":''))});
  const SRC=__MAIN.toString(),jsTok=[...tok].filter(t=>{if(t[0]==='['){const m=t.match(/^\[([\w-]+)(?:='(.*)')?$/),nm=m[1],v=m[2];return new RegExp('\\['+nm+'\\]').test(SRC)||(v!==undefined&&SRC.includes('['+nm+"='"+v+"'"))||(nm.length>7&&new RegExp('dataset\\.'+nm.slice(5)+'(?![\\w-])').test(SRC))}return new RegExp('[.#\\['+']'+t.slice(1)+'(?![\\w-])').test(SRC)});
- const note=(jsTok.length?'<!-- 注意：这个组件（或同类组件）可能有 JavaScript 交互，下面只有 HTML 和 CSS（外观）。JS 在 js/main.js 里，可搜索：'+jsTok.join('  ')+' -->\n':'')+(cssBlocked&&!sty.length?'<!-- 注意：浏览器禁止读取本地样式表，请用 http 服务器打开（python3 -m http.server），或使用 dist 单文件版 -->\n':'');
+ const note='<!-- 使用说明：把本段代码整段粘贴到一个带 <!doctype html> 的空白 HTML 文件里即可显示组件；样式已内联，无需引入其它文件。 -->\n'+(jsTok.length?'<!-- 交互提示：这个组件（或同类组件）可能有 JavaScript 交互（点击、输入、拖动等）；本段代码只含 HTML 和 CSS，粘贴后外观正常、交互不会生效。需要交互时，把 js/main.js 里对应逻辑一并交给 AI 或自行搬运，可搜索：'+jsTok.join('  ')+' -->\n':'')+(cssBlocked&&!sty.length?'<!-- 样式提示：浏览器禁止读取本地样式表，本段代码不完整；请用 http 服务器打开（python3 -m http.server），或使用 dist 单文件版后重新复制 -->\n':'');
  return esc(note+'<style>\n'+BASE+'\n'+(tokens.length?':root{'+tokens.join(';')+'}\n':'')+(props.length?props.join('\n')+'\n':'')+text+(kfText?'\n'+kfText:'')+'\n</style>\n'+html)};
 const copyCode=cp=>{const txt=cp.parentNode.querySelector('.cc').textContent;const done=()=>{cp.textContent='已复制 ✓';setTimeout(()=>{cp.textContent='复制'},1500)};const fb=()=>{const ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;opacity:0';document.body.append(ta);ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}ta.remove();ok?done():(cp.textContent='复制失败')};if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(done,fb)}else fb()};
 const codeClick=e=>{const t=e.target;
