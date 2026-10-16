@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="0; url=../index.html">
+<title>动态 UI 组件集 · 文档</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.doc-wrap{max-width:720px;margin:0 auto;padding:48px 20px 80px}
+.doc-wrap h1{font-size:28px;margin:0 0 8px}
+.doc-wrap .lead{color:var(--mute);margin:0 0 28px}
+.doc-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin:0 0 14px;box-shadow:var(--shadow)}
+.doc-card h2{margin:0 0 8px;font-size:16px}
+.doc-card p,.doc-card li{color:var(--mute);font-size:14px;line-height:1.6}
+.doc-card ul{margin:8px 0 0;padding-left:1.2em}
+.doc-card code{font-size:12.5px;background:var(--bg);padding:1px 6px;border-radius:6px}
+a.btn{text-decoration:none;display:inline-flex}
+</style>
+</head>
+<body>
+<div class="doc-wrap">
+  <h1>动态 UI 组件集 · 文档</h1>
+  <p class="lead">纯 HTML / CSS / JS，零依赖。完整交互演示请打开主页。</p>
+  <p><a class="btn" href="../index.html">打开组件演示 →</a></p>
+
+  <div class="doc-card">
+    <h2>快速开始</h2>
+    <p>克隆仓库后本地起一个静态服务：</p>
+    <p><code>python3 -m http.server 8000</code> → 访问 <code>http://localhost:8000</code></p>
+    <p>或运行 <code>python3 build.py</code> 生成单文件 <code>dist/ui-components.single.html</code>。</p>
+  </div>
+
+  <div class="doc-card">
+    <h2>实用组件套件（新增）</h2>
+    <ul>
+      <li><b>侧边抽屉</b> — 左/右侧滑出，遮罩 + Esc 关闭</li>
+      <li><b>搜索选择器</b> — 输入过滤、键盘选择、回车确认</li>
+      <li><b>完整分页</b> — 省略号、上一页/下一页</li>
+      <li><b>双滑块</b> — 区间选择，数值同步</li>
+      <li><b>多类型 Toast</b> — success / error / warn / info</li>
+    </ul>
+    <p>主页锚点：<code>#new-kit</code></p>
+  </div>
+
+  <div class="doc-card">
+    <h2>复制组件代码</h2>
+    <p>每个组件卡片右上角有 <code>&lt;/&gt;</code> 按钮，可提取 HTML + 匹配的 CSS。带 JS 交互的组件会在注释里提示搜索关键字。</p>
+  </div>
+
+  <p class="foot" style="margin-top:28px">MIT · <a href="https://github.com/ibi6/ui-components-oss">GitHub</a></p>
+</div>
+</body>
+</html>

@@ -12,9 +12,9 @@
   <header class="hero">
     <span class="eyebrow"><i></i>纯 HTML · CSS · JS，零依赖</span>
     <h1>动态 <em>UI</em> 组件集</h1>
-    <p class="lead">按钮、加载、表单、导航、图表、3D、小游戏，以及命令面板、数据表格这类完整组件。移动鼠标、点击、拖动，每个都能玩。</p>
-    <div class="stats"><span><b>236</b> 手写组件</span><span><b>576</b> 参数变体</span><span>每个组件都能看代码</span><span>浅色 / 深色</span></div>
-    <div class="hero-actions"><a href="#gallery" class="btn hero-btn">浏览组件图鉴 ↓</a><button class="btn ghost hero-btn" id="heroThemeBtn">切换主题外观</button></div>
+    <p class="lead">按钮、加载、表单、导航、图表、3D、小游戏，以及命令面板、数据表格、抽屉、搜索选择、分页这类完整组件。移动鼠标、点击、拖动，每个都能玩。</p>
+    <div class="stats"><span><b>241</b> 手写组件</span><span><b>576</b> 参数变体</span><span>每个组件都能看代码</span><span>浅色 / 深色</span></div>
+    <div class="hero-actions"><a href="#new-kit" class="btn hero-btn">查看实用组件 ↓</a><a href="#gallery" class="btn ghost hero-btn">浏览组件图鉴</a><button class="btn ghost hero-btn" id="heroThemeBtn">切换主题外观</button></div>
   </header>
   <div class="grid">
     <section class="box wide">
@@ -155,6 +155,87 @@
       <div class="mw" id="mw"><button class="btn">靠近我</button></div>
     </section>
   </div>
+
+    <section class="box wide" id="new-kit">
+      <h2>实用组件套件 · 新增</h2>
+      <p class="kit-lead">下面 5 个是可直接搬进项目的完整交互：抽屉、搜索选择、分页、双滑块、多类型 Toast。点右上角 &lt;/&gt; 可复制 HTML/CSS。</p>
+    </section>
+
+    <section class="box">
+      <h2>侧边抽屉</h2>
+      <p class="hint-line">从左侧滑出，带遮罩与 Esc 关闭；适合设置面板、导航菜单。</p>
+      <div class="row"><button class="btn" id="openDrawer">打开抽屉</button><button class="btn ghost" id="openDrawerRight" data-side="right">右侧抽屉</button></div>
+      <div class="drawer-mask" id="drawerMask" hidden>
+        <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+          <header class="drawer-hd">
+            <h3 id="drawerTitle">设置面板</h3>
+            <button class="drawer-x" id="drawerClose" aria-label="关闭">×</button>
+          </header>
+          <div class="drawer-bd">
+            <label class="sw"><span>桌面通知</span><input type="checkbox" checked><span class="trk"></span></label>
+            <label class="sw"><span>邮件摘要</span><input type="checkbox"><span class="trk"></span></label>
+            <label class="sw"><span>每周报告</span><input type="checkbox" checked><span class="trk"></span></label>
+            <p class="drawer-note">偏好会保存在本机演示状态里，刷新后重置。</p>
+          </div>
+          <footer class="drawer-ft">
+            <button class="btn ghost" data-drawer-close>取消</button>
+            <button class="btn" data-drawer-close>保存</button>
+          </footer>
+        </aside>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>搜索选择器</h2>
+      <p class="hint-line">可输入过滤、键盘上下选择、回车确认。点击外部关闭。</p>
+      <div class="sel" id="sel">
+        <button type="button" class="sel-trig" id="selTrig" aria-haspopup="listbox" aria-expanded="false">
+          <span class="sel-val" id="selVal">选择城市</span>
+          <span class="sel-chev">▾</span>
+        </button>
+        <div class="sel-panel" id="selPanel" hidden>
+          <input class="sel-q" id="selQ" type="search" placeholder="搜索城市…" autocomplete="off" aria-label="搜索城市">
+          <ul class="sel-list" id="selList" role="listbox"></ul>
+          <div class="sel-empty" id="selEmpty" hidden>没有匹配项</div>
+        </div>
+      </div>
+      <p class="hint-line" id="selHint">当前未选择</p>
+    </section>
+
+    <section class="box">
+      <h2>完整分页</h2>
+      <p class="hint-line">带省略号、上一页/下一页与页码跳转，适合列表底部。</p>
+      <div class="page-demo">
+        <div class="page-meta"><span id="pageInfo">第 1 / 12 页</span><span id="pageTotal">共 118 条</span></div>
+        <nav class="pager" id="pager" aria-label="分页"></nav>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>双滑块</h2>
+      <p class="hint-line">拖两端选择价格区间，中间轨道高亮，数值实时同步。</p>
+      <div class="dual" id="dual" data-min="0" data-max="1000" data-step="10">
+        <div class="dual-vals"><b id="dualLo">¥200</b><span>—</span><b id="dualHi">¥780</b></div>
+        <div class="dual-track">
+          <div class="dual-range" id="dualRange"></div>
+          <input type="range" id="dualA" min="0" max="1000" step="10" value="200" aria-label="最低价">
+          <input type="range" id="dualB" min="0" max="1000" step="10" value="780" aria-label="最高价">
+        </div>
+        <div class="dual-ends"><span>¥0</span><span>¥1000</span></div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>多类型 Toast</h2>
+      <p class="hint-line">成功 / 错误 / 警告 / 信息四种样式，可堆叠，点击或超时关闭。</p>
+      <div class="row toast-btns">
+        <button class="btn" data-toast="success">成功</button>
+        <button class="btn ghost" data-toast="error">错误</button>
+        <button class="btn ghost" data-toast="warn">警告</button>
+        <button class="btn ghost" data-toast="info">信息</button>
+      </div>
+    </section>
+
   <section class="box gallery" id="gallery">
     <div class="gal-head"><h2>组件图鉴</h2><p>按类别整理的小组件。每个组件右上角都有 &lt;/&gt; 按钮，点开可以看代码并一键复制。</p></div>
     <div id="gal"></div>

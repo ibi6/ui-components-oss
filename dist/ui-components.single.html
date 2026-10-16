@@ -1059,6 +1059,84 @@ body::before{background:radial-gradient(900px 480px at 6% -8%,rgba(108,77,255,.1
 .stp span.on{box-shadow:0 6px 14px -6px var(--vd)}
 .gen>summary::after{box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 6px 14px -8px var(--vd)}
 .gen[open]>summary::after{box-shadow:var(--sh1)}
+
+/* ========== 实用组件套件：抽屉 / 选择器 / 分页 / 双滑块 / 多类型 Toast ========== */
+.kit-lead,.hint-line{margin:0;color:var(--mute);font-size:13.5px;line-height:1.55}
+.kit-lead{max-width:62ch}
+
+/* Drawer */
+.drawer-mask{position:fixed;inset:0;z-index:40;background:rgba(10,8,40,.48);backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity .28s ease}
+.drawer-mask.on{opacity:1;pointer-events:auto}
+.drawer-mask[hidden]{display:none!important}
+.drawer{position:absolute;top:0;bottom:0;left:0;width:min(340px,88vw);background:var(--panel);box-shadow:0 24px 80px -20px rgba(10,8,40,.55),inset 0 1px 0 rgba(255,255,255,.3);display:flex;flex-direction:column;transform:translateX(-104%);transition:transform .34s cubic-bezier(.22,1,.36,1)}
+.drawer-mask.right .drawer{left:auto;right:0;transform:translateX(104%)}
+.drawer-mask.on .drawer{transform:none}
+.drawer-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 12px;border-bottom:1px solid var(--line)}
+.drawer-hd h3{margin:0;font-size:16px}
+.drawer-x{width:34px;height:34px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:20px;line-height:1;color:var(--mute)}
+.drawer-x:hover{color:var(--ink);border-color:var(--v)}
+.drawer-bd{padding:18px;display:flex;flex-direction:column;gap:12px;overflow:auto;flex:1}
+.drawer-note{margin:8px 0 0;font-size:12.5px;color:var(--mute)}
+.drawer-ft{display:flex;justify-content:flex-end;gap:10px;padding:14px 18px 18px;border-top:1px solid var(--line)}
+
+/* Searchable Select */
+.sel{position:relative;width:100%;max-width:320px}
+.sel-trig{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);text-align:left;transition:border-color .2s,box-shadow .2s}
+.sel.open .sel-trig,.sel-trig:focus-visible{border-color:var(--v);box-shadow:0 0 0 3px rgba(108,77,255,.18)}
+.sel-val{color:var(--ink);font-weight:500}
+.sel-val.ph{color:var(--mute);font-weight:400}
+.sel-chev{color:var(--mute);transition:transform .2s}
+.sel.open .sel-chev{transform:rotate(180deg)}
+.sel-panel{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:12;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;animation:selIn .18s ease}
+.sel-panel[hidden]{display:none!important}
+@keyframes selIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sel-q{width:100%;border:0;border-bottom:1px solid var(--line);padding:12px 14px;background:transparent;color:var(--ink);outline:none}
+.sel-list{list-style:none;margin:0;padding:6px;max-height:220px;overflow:auto}
+.sel-list li{padding:9px 12px;border-radius:9px;cursor:pointer;display:flex;justify-content:space-between;gap:8px;color:var(--ink)}
+.sel-list li:hover,.sel-list li.on{background:rgba(108,77,255,.1);color:var(--v)}
+.sel-list li mark{background:rgba(255,198,77,.35);color:inherit;border-radius:3px;padding:0 1px}
+.sel-list li em{font-style:normal;font-size:12px;color:var(--mute)}
+.sel-empty{padding:16px;text-align:center;color:var(--mute);font-size:13px}
+
+/* Pagination */
+.page-demo{display:flex;flex-direction:column;gap:14px}
+.page-meta{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--mute)}
+.pager{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pager button{min-width:36px;height:36px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font-weight:600;font-size:13px;transition:background .15s,border-color .15s,color .15s,transform .1s}
+.pager button:hover:not(:disabled){border-color:var(--v);color:var(--v)}
+.pager button.on{background:var(--v);border-color:var(--v);color:#fff}
+.pager button:disabled{opacity:.4;cursor:not-allowed}
+.pager .pg-gap{min-width:28px;text-align:center;color:var(--mute);pointer-events:none;border:0;background:transparent}
+
+/* Dual range */
+.dual{display:flex;flex-direction:column;gap:12px;padding:4px 2px 0}
+.dual-vals{display:flex;align-items:center;justify-content:center;gap:10px;font-size:18px}
+.dual-vals b{font-variant-numeric:tabular-nums;color:var(--v)}
+.dual-vals span{color:var(--mute)}
+.dual-track{position:relative;height:28px;display:grid;place-items:center}
+.dual-track::before{content:"";position:absolute;left:0;right:0;height:6px;border-radius:99px;background:var(--line)}
+.dual-range{position:absolute;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--v),var(--a));pointer-events:none}
+.dual-track input[type=range]{position:absolute;left:0;width:100%;appearance:none;background:none;pointer-events:none;margin:0;height:28px}
+.dual-track input[type=range]::-webkit-slider-thumb{appearance:none;pointer-events:auto;width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--v);box-shadow:0 4px 12px -4px rgba(40,30,120,.45);cursor:grab}
+.dual-track input[type=range]::-moz-range-thumb{pointer-events:auto;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid var(--v);box-shadow:0 4px 12px -4px rgba(40,30,120,.45);cursor:grab}
+.dual-ends{display:flex;justify-content:space-between;font-size:12px;color:var(--mute)}
+
+/* Typed toasts */
+.toast.t-success{--taccent:#15a37b}
+.toast.t-error{--taccent:#e5484d}
+.toast.t-warn{--taccent:#e5a00d}
+.toast.t-info{--taccent:#3b82f6}
+.toast[class*="t-"]{display:flex;align-items:flex-start;gap:10px;padding:12px 16px 14px}
+.toast .t-ico{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--taccent);color:#fff;margin-top:1px}
+.toast .t-body{flex:1;min-width:0}
+.toast .t-body b{display:block;font-size:13.5px;margin-bottom:2px}
+.toast .t-body span{display:block;font-size:12.5px;opacity:.82;line-height:1.4}
+.toast[class*="t-"]::after{background:var(--taccent)}
+.toast-btns .btn{padding:9px 16px;font-size:13px}
+.dual-track input[type=range]:nth-of-type(1){z-index:3}
+.dual-track input[type=range]:nth-of-type(2){z-index:4}
+.dual-track input[type=range]:nth-of-type(1):focus{z-index:5}
+.dual-track input[type=range]:nth-of-type(2):focus{z-index:5}
 </style>
 </head>
 <body>
@@ -1067,9 +1145,9 @@ body::before{background:radial-gradient(900px 480px at 6% -8%,rgba(108,77,255,.1
   <header class="hero">
     <span class="eyebrow"><i></i>纯 HTML · CSS · JS，零依赖</span>
     <h1>动态 <em>UI</em> 组件集</h1>
-    <p class="lead">按钮、加载、表单、导航、图表、3D、小游戏，以及命令面板、数据表格这类完整组件。移动鼠标、点击、拖动，每个都能玩。</p>
-    <div class="stats"><span><b>236</b> 手写组件</span><span><b>576</b> 参数变体</span><span>每个组件都能看代码</span><span>浅色 / 深色</span></div>
-    <div class="hero-actions"><a href="#gallery" class="btn hero-btn">浏览组件图鉴 ↓</a><button class="btn ghost hero-btn" id="heroThemeBtn">切换主题外观</button></div>
+    <p class="lead">按钮、加载、表单、导航、图表、3D、小游戏，以及命令面板、数据表格、抽屉、搜索选择、分页这类完整组件。移动鼠标、点击、拖动，每个都能玩。</p>
+    <div class="stats"><span><b>241</b> 手写组件</span><span><b>576</b> 参数变体</span><span>每个组件都能看代码</span><span>浅色 / 深色</span></div>
+    <div class="hero-actions"><a href="#new-kit" class="btn hero-btn">查看实用组件 ↓</a><a href="#gallery" class="btn ghost hero-btn">浏览组件图鉴</a><button class="btn ghost hero-btn" id="heroThemeBtn">切换主题外观</button></div>
   </header>
   <div class="grid">
     <section class="box wide">
@@ -1210,6 +1288,87 @@ body::before{background:radial-gradient(900px 480px at 6% -8%,rgba(108,77,255,.1
       <div class="mw" id="mw"><button class="btn">靠近我</button></div>
     </section>
   </div>
+
+    <section class="box wide" id="new-kit">
+      <h2>实用组件套件 · 新增</h2>
+      <p class="kit-lead">下面 5 个是可直接搬进项目的完整交互：抽屉、搜索选择、分页、双滑块、多类型 Toast。点右上角 &lt;/&gt; 可复制 HTML/CSS。</p>
+    </section>
+
+    <section class="box">
+      <h2>侧边抽屉</h2>
+      <p class="hint-line">从左侧滑出，带遮罩与 Esc 关闭；适合设置面板、导航菜单。</p>
+      <div class="row"><button class="btn" id="openDrawer">打开抽屉</button><button class="btn ghost" id="openDrawerRight" data-side="right">右侧抽屉</button></div>
+      <div class="drawer-mask" id="drawerMask" hidden>
+        <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+          <header class="drawer-hd">
+            <h3 id="drawerTitle">设置面板</h3>
+            <button class="drawer-x" id="drawerClose" aria-label="关闭">×</button>
+          </header>
+          <div class="drawer-bd">
+            <label class="sw"><span>桌面通知</span><input type="checkbox" checked><span class="trk"></span></label>
+            <label class="sw"><span>邮件摘要</span><input type="checkbox"><span class="trk"></span></label>
+            <label class="sw"><span>每周报告</span><input type="checkbox" checked><span class="trk"></span></label>
+            <p class="drawer-note">偏好会保存在本机演示状态里，刷新后重置。</p>
+          </div>
+          <footer class="drawer-ft">
+            <button class="btn ghost" data-drawer-close>取消</button>
+            <button class="btn" data-drawer-close>保存</button>
+          </footer>
+        </aside>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>搜索选择器</h2>
+      <p class="hint-line">可输入过滤、键盘上下选择、回车确认。点击外部关闭。</p>
+      <div class="sel" id="sel">
+        <button type="button" class="sel-trig" id="selTrig" aria-haspopup="listbox" aria-expanded="false">
+          <span class="sel-val" id="selVal">选择城市</span>
+          <span class="sel-chev">▾</span>
+        </button>
+        <div class="sel-panel" id="selPanel" hidden>
+          <input class="sel-q" id="selQ" type="search" placeholder="搜索城市…" autocomplete="off" aria-label="搜索城市">
+          <ul class="sel-list" id="selList" role="listbox"></ul>
+          <div class="sel-empty" id="selEmpty" hidden>没有匹配项</div>
+        </div>
+      </div>
+      <p class="hint-line" id="selHint">当前未选择</p>
+    </section>
+
+    <section class="box">
+      <h2>完整分页</h2>
+      <p class="hint-line">带省略号、上一页/下一页与页码跳转，适合列表底部。</p>
+      <div class="page-demo">
+        <div class="page-meta"><span id="pageInfo">第 1 / 12 页</span><span id="pageTotal">共 118 条</span></div>
+        <nav class="pager" id="pager" aria-label="分页"></nav>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>双滑块</h2>
+      <p class="hint-line">拖两端选择价格区间，中间轨道高亮，数值实时同步。</p>
+      <div class="dual" id="dual" data-min="0" data-max="1000" data-step="10">
+        <div class="dual-vals"><b id="dualLo">¥200</b><span>—</span><b id="dualHi">¥780</b></div>
+        <div class="dual-track">
+          <div class="dual-range" id="dualRange"></div>
+          <input type="range" id="dualA" min="0" max="1000" step="10" value="200" aria-label="最低价">
+          <input type="range" id="dualB" min="0" max="1000" step="10" value="780" aria-label="最高价">
+        </div>
+        <div class="dual-ends"><span>¥0</span><span>¥1000</span></div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>多类型 Toast</h2>
+      <p class="hint-line">成功 / 错误 / 警告 / 信息四种样式，可堆叠，点击或超时关闭。</p>
+      <div class="row toast-btns">
+        <button class="btn" data-toast="success">成功</button>
+        <button class="btn ghost" data-toast="error">错误</button>
+        <button class="btn ghost" data-toast="warn">警告</button>
+        <button class="btn ghost" data-toast="info">信息</button>
+      </div>
+    </section>
+
   <section class="box gallery" id="gallery">
     <div class="gal-head"><h2>组件图鉴</h2><p>按类别整理的小组件。每个组件右上角都有 &lt;/&gt; 按钮，点开可以看代码并一键复制。</p></div>
     <div id="gal"></div>
@@ -1742,7 +1901,126 @@ const layout=()=>{const n=Math.max(1,Math.min(3,Math.floor(gridEl.clientWidth/32
  const cols=[...gridEl.children];boxes.forEach(b=>{cols.reduce((m,c)=>c.offsetHeight<m.offsetHeight?c:m).append(b)})};
 layout();addEventListener('resize',layout);
 
-};__MAIN();
-</script>
+
+// ========== 实用组件套件：抽屉 / 选择器 / 分页 / 双滑块 / 多类型 Toast ==========
+(()=>{
+// Drawer
+const mask=$('#drawerMask'), drawer=$('#drawer');
+const openDrawer=(side='left')=>{
+  if(!mask)return;
+  mask.hidden=false;mask.classList.toggle('right',side==='right');
+  requestAnimationFrame(()=>mask.classList.add('on'));
+  document.body.style.overflow='hidden';
+  $('#drawerClose')?.focus();
+};
+const closeDrawer=()=>{
+  if(!mask||!mask.classList.contains('on'))return;
+  mask.classList.remove('on');
+  const done=()=>{mask.hidden=true;mask.removeEventListener('transitionend',done);document.body.style.overflow=''};
+  mask.addEventListener('transitionend',done);
+  setTimeout(done,360);
+};
+$('#openDrawer')?.addEventListener('click',()=>openDrawer('left'));
+$('#openDrawerRight')?.addEventListener('click',()=>openDrawer('right'));
+$('#drawerClose')?.addEventListener('click',closeDrawer);
+mask?.addEventListener('click',e=>{if(e.target===mask)closeDrawer()});
+mask?.querySelectorAll('[data-drawer-close]').forEach(b=>b.addEventListener('click',closeDrawer));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&mask&&!mask.hidden)closeDrawer()});
+
+// Searchable Select
+const CITIES=[['北京','华北'],['上海','华东'],['广州','华南'],['深圳','华南'],['杭州','华东'],['成都','西南'],['重庆','西南'],['武汉','华中'],['西安','西北'],['南京','华东'],['苏州','华东'],['厦门','华南'],['青岛','华东'],['长沙','华中'],['天津','华北']];
+const sel=$('#sel'), selTrig=$('#selTrig'), selPanel=$('#selPanel'), selList=$('#selList'), selQ=$('#selQ'), selVal=$('#selVal'), selEmpty=$('#selEmpty'), selHint=$('#selHint');
+let selIdx=-1, selOpen=false, selFiltered=CITIES.slice();
+const paintSel=()=>{
+  if(!selList)return;
+  const q=(selQ?.value||'').trim();
+  selFiltered=CITIES.filter(([n,r])=>!q||n.includes(q)||r.includes(q));
+  selEmpty.hidden=!!selFiltered.length;
+  selList.innerHTML=selFiltered.map(([n,r],i)=>{
+    const label=q?n.replace(q,m=>`<mark>${m}</mark>`):n;
+    return `<li role="option" data-i="${i}" class="${i===selIdx?'on':''}"><span>${label}</span><em>${r}</em></li>`;
+  }).join('');
+};
+const setSelOpen=v=>{
+  selOpen=v;sel?.classList.toggle('open',v);selTrig?.setAttribute('aria-expanded',v?'true':'false');
+  if(selPanel)selPanel.hidden=!v;
+  if(v){selIdx=Math.max(0,selFiltered.findIndex(([n])=>n===selVal?.dataset.v));paintSel();selQ?.focus()}
+};
+selTrig?.addEventListener('click',e=>{e.stopPropagation();setSelOpen(!selOpen)});
+selQ?.addEventListener('input',()=>{selIdx=0;paintSel()});
+selQ?.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'){e.preventDefault();selIdx=Math.min(selFiltered.length-1,selIdx+1);paintSel()}
+  else if(e.key==='ArrowUp'){e.preventDefault();selIdx=Math.max(0,selIdx-1);paintSel()}
+  else if(e.key==='Enter'){e.preventDefault();const it=selFiltered[selIdx];if(it)pickCity(it[0],it[1])}
+  else if(e.key==='Escape')setSelOpen(false);
+});
+const pickCity=(n,r)=>{
+  selVal.textContent=n;selVal.dataset.v=n;selVal.classList.remove('ph');
+  if(selHint)selHint.textContent='已选择：'+n+'（'+r+'）';
+  setSelOpen(false);
+};
+selList?.addEventListener('click',e=>{const li=e.target.closest('li[data-i]');if(!li)return;const it=selFiltered[+li.dataset.i];if(it)pickCity(it[0],it[1])});
+selList?.addEventListener('mouseover',e=>{const li=e.target.closest('li[data-i]');if(li){selIdx=+li.dataset.i;paintSel()}});
+addEventListener('click',e=>{if(selOpen&&sel&&!sel.contains(e.target))setSelOpen(false)});
+if(selVal){selVal.classList.add('ph');paintSel()}
+
+// Pagination
+const pager=$('#pager'), pageInfo=$('#pageInfo'), pageTotal=$('#pageTotal');
+const PG={page:1,pages:12,total:118,size:10};
+const pageWindow=(cur,total)=>{
+  if(total<=7)return Array.from({length:total},(_,i)=>i+1);
+  const set=new Set([1,total,cur,cur-1,cur+1]);
+  if(cur<=3)[2,3,4].forEach(n=>set.add(n));
+  if(cur>=total-2)[total-1,total-2,total-3].forEach(n=>set.add(n));
+  return [...set].filter(n=>n>=1&&n<=total).sort((a,b)=>a-b);
+};
+const renderPager=()=>{
+  if(!pager)return;
+  const {page,pages,total}=PG;
+  if(pageInfo)pageInfo.textContent=`第 ${page} / ${pages} 页`;
+  if(pageTotal)pageTotal.textContent=`共 ${total} 条`;
+  const nums=pageWindow(page,pages);
+  let html=`<button data-p="${page-1}" ${page<=1?'disabled':''} aria-label="上一页">‹</button>`;
+  nums.forEach((n,i)=>{if(i&&n-nums[i-1]>1)html+=`<span class="pg-gap">…</span>`;html+=`<button data-p="${n}" class="${n===page?'on':''}" aria-current="${n===page?'page':'false'}">${n}</button>`});
+  html+=`<button data-p="${page+1}" ${page>=pages?'disabled':''} aria-label="下一页">›</button>`;
+  pager.innerHTML=html;
+};
+pager?.addEventListener('click',e=>{const b=e.target.closest('button[data-p]');if(!b||b.disabled)return;const p=+b.dataset.p;if(p>=1&&p<=PG.pages){PG.page=p;renderPager()}});
+renderPager();
+
+// Dual range
+const dual=$('#dual'), da=$('#dualA'), db=$('#dualB'), dRange=$('#dualRange'), dLo=$('#dualLo'), dHi=$('#dualHi');
+const syncDual=()=>{
+  if(!da||!db)return;
+  let a=+da.value,b=+db.value;if(a>b){const t=a;a=b;b=t;da.value=a;db.value=b}
+  const min=+da.min,max=+da.max,span=max-min||1;
+  const l=((a-min)/span)*100,r=((b-min)/span)*100;
+  if(dRange){dRange.style.left=l+'%';dRange.style.width=(r-l)+'%'}
+  if(dLo)dLo.textContent='¥'+a;if(dHi)dHi.textContent='¥'+b;
+};
+da?.addEventListener('input',syncDual);db?.addEventListener('input',syncDual);syncDual();
+
+// Typed toasts
+const TOAST_MSG={
+  success:['保存成功','更改已同步到云端'],
+  error:['操作失败','网络异常，请稍后重试'],
+  warn:['注意','当前配额即将用尽'],
+  info:['提示','新版本可在设置中更新']
+};
+const ICO={success:'✓',error:'!',warn:'!',info:'i'};
+const pushToast=(type='info')=>{
+  const box=$('#toasts');if(!box)return;
+  const [title,desc]=TOAST_MSG[type]||TOAST_MSG.info;
+  const el=document.createElement('div');
+  el.className='toast t-'+type;
+  el.innerHTML=`<i class="t-ico">${ICO[type]||'i'}</i><div class="t-body"><b>${title}</b><span>${desc}</span></div>`;
+  box.append(el);
+  const close=()=>{if(el.classList.contains('out'))return;el.classList.add('out');el.addEventListener('animationend',()=>el.remove())};
+  el.addEventListener('click',close);setTimeout(close,3200);
+};
+document.querySelectorAll('[data-toast]').forEach(b=>b.addEventListener('click',()=>pushToast(b.dataset.toast)));
+})();
+
+};__MAIN();</script>
 </body>
 </html>

@@ -520,4 +520,124 @@ const layout=()=>{const n=Math.max(1,Math.min(3,Math.floor(gridEl.clientWidth/32
  const cols=[...gridEl.children];boxes.forEach(b=>{cols.reduce((m,c)=>c.offsetHeight<m.offsetHeight?c:m).append(b)})};
 layout();addEventListener('resize',layout);
 
+
+// ========== 实用组件套件：抽屉 / 选择器 / 分页 / 双滑块 / 多类型 Toast ==========
+(()=>{
+// Drawer
+const mask=$('#drawerMask'), drawer=$('#drawer');
+const openDrawer=(side='left')=>{
+  if(!mask)return;
+  mask.hidden=false;mask.classList.toggle('right',side==='right');
+  requestAnimationFrame(()=>mask.classList.add('on'));
+  document.body.style.overflow='hidden';
+  $('#drawerClose')?.focus();
+};
+const closeDrawer=()=>{
+  if(!mask||!mask.classList.contains('on'))return;
+  mask.classList.remove('on');
+  const done=()=>{mask.hidden=true;mask.removeEventListener('transitionend',done);document.body.style.overflow=''};
+  mask.addEventListener('transitionend',done);
+  setTimeout(done,360);
+};
+$('#openDrawer')?.addEventListener('click',()=>openDrawer('left'));
+$('#openDrawerRight')?.addEventListener('click',()=>openDrawer('right'));
+$('#drawerClose')?.addEventListener('click',closeDrawer);
+mask?.addEventListener('click',e=>{if(e.target===mask)closeDrawer()});
+mask?.querySelectorAll('[data-drawer-close]').forEach(b=>b.addEventListener('click',closeDrawer));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&mask&&!mask.hidden)closeDrawer()});
+
+// Searchable Select
+const CITIES=[['北京','华北'],['上海','华东'],['广州','华南'],['深圳','华南'],['杭州','华东'],['成都','西南'],['重庆','西南'],['武汉','华中'],['西安','西北'],['南京','华东'],['苏州','华东'],['厦门','华南'],['青岛','华东'],['长沙','华中'],['天津','华北']];
+const sel=$('#sel'), selTrig=$('#selTrig'), selPanel=$('#selPanel'), selList=$('#selList'), selQ=$('#selQ'), selVal=$('#selVal'), selEmpty=$('#selEmpty'), selHint=$('#selHint');
+let selIdx=-1, selOpen=false, selFiltered=CITIES.slice();
+const paintSel=()=>{
+  if(!selList)return;
+  const q=(selQ?.value||'').trim();
+  selFiltered=CITIES.filter(([n,r])=>!q||n.includes(q)||r.includes(q));
+  selEmpty.hidden=!!selFiltered.length;
+  selList.innerHTML=selFiltered.map(([n,r],i)=>{
+    const label=q?n.replace(q,m=>`<mark>${m}</mark>`):n;
+    return `<li role="option" data-i="${i}" class="${i===selIdx?'on':''}"><span>${label}</span><em>${r}</em></li>`;
+  }).join('');
+};
+const setSelOpen=v=>{
+  selOpen=v;sel?.classList.toggle('open',v);selTrig?.setAttribute('aria-expanded',v?'true':'false');
+  if(selPanel)selPanel.hidden=!v;
+  if(v){selIdx=Math.max(0,selFiltered.findIndex(([n])=>n===selVal?.dataset.v));paintSel();selQ?.focus()}
+};
+selTrig?.addEventListener('click',e=>{e.stopPropagation();setSelOpen(!selOpen)});
+selQ?.addEventListener('input',()=>{selIdx=0;paintSel()});
+selQ?.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'){e.preventDefault();selIdx=Math.min(selFiltered.length-1,selIdx+1);paintSel()}
+  else if(e.key==='ArrowUp'){e.preventDefault();selIdx=Math.max(0,selIdx-1);paintSel()}
+  else if(e.key==='Enter'){e.preventDefault();const it=selFiltered[selIdx];if(it)pickCity(it[0],it[1])}
+  else if(e.key==='Escape')setSelOpen(false);
+});
+const pickCity=(n,r)=>{
+  selVal.textContent=n;selVal.dataset.v=n;selVal.classList.remove('ph');
+  if(selHint)selHint.textContent='已选择：'+n+'（'+r+'）';
+  setSelOpen(false);
+};
+selList?.addEventListener('click',e=>{const li=e.target.closest('li[data-i]');if(!li)return;const it=selFiltered[+li.dataset.i];if(it)pickCity(it[0],it[1])});
+selList?.addEventListener('mouseover',e=>{const li=e.target.closest('li[data-i]');if(li){selIdx=+li.dataset.i;paintSel()}});
+addEventListener('click',e=>{if(selOpen&&sel&&!sel.contains(e.target))setSelOpen(false)});
+if(selVal){selVal.classList.add('ph');paintSel()}
+
+// Pagination
+const pager=$('#pager'), pageInfo=$('#pageInfo'), pageTotal=$('#pageTotal');
+const PG={page:1,pages:12,total:118,size:10};
+const pageWindow=(cur,total)=>{
+  if(total<=7)return Array.from({length:total},(_,i)=>i+1);
+  const set=new Set([1,total,cur,cur-1,cur+1]);
+  if(cur<=3)[2,3,4].forEach(n=>set.add(n));
+  if(cur>=total-2)[total-1,total-2,total-3].forEach(n=>set.add(n));
+  return [...set].filter(n=>n>=1&&n<=total).sort((a,b)=>a-b);
+};
+const renderPager=()=>{
+  if(!pager)return;
+  const {page,pages,total}=PG;
+  if(pageInfo)pageInfo.textContent=`第 ${page} / ${pages} 页`;
+  if(pageTotal)pageTotal.textContent=`共 ${total} 条`;
+  const nums=pageWindow(page,pages);
+  let html=`<button data-p="${page-1}" ${page<=1?'disabled':''} aria-label="上一页">‹</button>`;
+  nums.forEach((n,i)=>{if(i&&n-nums[i-1]>1)html+=`<span class="pg-gap">…</span>`;html+=`<button data-p="${n}" class="${n===page?'on':''}" aria-current="${n===page?'page':'false'}">${n}</button>`});
+  html+=`<button data-p="${page+1}" ${page>=pages?'disabled':''} aria-label="下一页">›</button>`;
+  pager.innerHTML=html;
+};
+pager?.addEventListener('click',e=>{const b=e.target.closest('button[data-p]');if(!b||b.disabled)return;const p=+b.dataset.p;if(p>=1&&p<=PG.pages){PG.page=p;renderPager()}});
+renderPager();
+
+// Dual range
+const dual=$('#dual'), da=$('#dualA'), db=$('#dualB'), dRange=$('#dualRange'), dLo=$('#dualLo'), dHi=$('#dualHi');
+const syncDual=()=>{
+  if(!da||!db)return;
+  let a=+da.value,b=+db.value;if(a>b){const t=a;a=b;b=t;da.value=a;db.value=b}
+  const min=+da.min,max=+da.max,span=max-min||1;
+  const l=((a-min)/span)*100,r=((b-min)/span)*100;
+  if(dRange){dRange.style.left=l+'%';dRange.style.width=(r-l)+'%'}
+  if(dLo)dLo.textContent='¥'+a;if(dHi)dHi.textContent='¥'+b;
+};
+da?.addEventListener('input',syncDual);db?.addEventListener('input',syncDual);syncDual();
+
+// Typed toasts
+const TOAST_MSG={
+  success:['保存成功','更改已同步到云端'],
+  error:['操作失败','网络异常，请稍后重试'],
+  warn:['注意','当前配额即将用尽'],
+  info:['提示','新版本可在设置中更新']
+};
+const ICO={success:'✓',error:'!',warn:'!',info:'i'};
+const pushToast=(type='info')=>{
+  const box=$('#toasts');if(!box)return;
+  const [title,desc]=TOAST_MSG[type]||TOAST_MSG.info;
+  const el=document.createElement('div');
+  el.className='toast t-'+type;
+  el.innerHTML=`<i class="t-ico">${ICO[type]||'i'}</i><div class="t-body"><b>${title}</b><span>${desc}</span></div>`;
+  box.append(el);
+  const close=()=>{if(el.classList.contains('out'))return;el.classList.add('out');el.addEventListener('animationend',()=>el.remove())};
+  el.addEventListener('click',close);setTimeout(close,3200);
+};
+document.querySelectorAll('[data-toast]').forEach(b=>b.addEventListener('click',()=>pushToast(b.dataset.toast)));
+})();
+
 };__MAIN();

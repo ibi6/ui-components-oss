@@ -1052,3 +1052,81 @@ body::before{background:radial-gradient(900px 480px at 6% -8%,rgba(108,77,255,.1
 .stp span.on{box-shadow:0 6px 14px -6px var(--vd)}
 .gen>summary::after{box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 6px 14px -8px var(--vd)}
 .gen[open]>summary::after{box-shadow:var(--sh1)}
+
+/* ========== 实用组件套件：抽屉 / 选择器 / 分页 / 双滑块 / 多类型 Toast ========== */
+.kit-lead,.hint-line{margin:0;color:var(--mute);font-size:13.5px;line-height:1.55}
+.kit-lead{max-width:62ch}
+
+/* Drawer */
+.drawer-mask{position:fixed;inset:0;z-index:40;background:rgba(10,8,40,.48);backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity .28s ease}
+.drawer-mask.on{opacity:1;pointer-events:auto}
+.drawer-mask[hidden]{display:none!important}
+.drawer{position:absolute;top:0;bottom:0;left:0;width:min(340px,88vw);background:var(--panel);box-shadow:0 24px 80px -20px rgba(10,8,40,.55),inset 0 1px 0 rgba(255,255,255,.3);display:flex;flex-direction:column;transform:translateX(-104%);transition:transform .34s cubic-bezier(.22,1,.36,1)}
+.drawer-mask.right .drawer{left:auto;right:0;transform:translateX(104%)}
+.drawer-mask.on .drawer{transform:none}
+.drawer-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 12px;border-bottom:1px solid var(--line)}
+.drawer-hd h3{margin:0;font-size:16px}
+.drawer-x{width:34px;height:34px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:20px;line-height:1;color:var(--mute)}
+.drawer-x:hover{color:var(--ink);border-color:var(--v)}
+.drawer-bd{padding:18px;display:flex;flex-direction:column;gap:12px;overflow:auto;flex:1}
+.drawer-note{margin:8px 0 0;font-size:12.5px;color:var(--mute)}
+.drawer-ft{display:flex;justify-content:flex-end;gap:10px;padding:14px 18px 18px;border-top:1px solid var(--line)}
+
+/* Searchable Select */
+.sel{position:relative;width:100%;max-width:320px}
+.sel-trig{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);text-align:left;transition:border-color .2s,box-shadow .2s}
+.sel.open .sel-trig,.sel-trig:focus-visible{border-color:var(--v);box-shadow:0 0 0 3px rgba(108,77,255,.18)}
+.sel-val{color:var(--ink);font-weight:500}
+.sel-val.ph{color:var(--mute);font-weight:400}
+.sel-chev{color:var(--mute);transition:transform .2s}
+.sel.open .sel-chev{transform:rotate(180deg)}
+.sel-panel{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:12;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;animation:selIn .18s ease}
+.sel-panel[hidden]{display:none!important}
+@keyframes selIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sel-q{width:100%;border:0;border-bottom:1px solid var(--line);padding:12px 14px;background:transparent;color:var(--ink);outline:none}
+.sel-list{list-style:none;margin:0;padding:6px;max-height:220px;overflow:auto}
+.sel-list li{padding:9px 12px;border-radius:9px;cursor:pointer;display:flex;justify-content:space-between;gap:8px;color:var(--ink)}
+.sel-list li:hover,.sel-list li.on{background:rgba(108,77,255,.1);color:var(--v)}
+.sel-list li mark{background:rgba(255,198,77,.35);color:inherit;border-radius:3px;padding:0 1px}
+.sel-list li em{font-style:normal;font-size:12px;color:var(--mute)}
+.sel-empty{padding:16px;text-align:center;color:var(--mute);font-size:13px}
+
+/* Pagination */
+.page-demo{display:flex;flex-direction:column;gap:14px}
+.page-meta{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--mute)}
+.pager{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pager button{min-width:36px;height:36px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font-weight:600;font-size:13px;transition:background .15s,border-color .15s,color .15s,transform .1s}
+.pager button:hover:not(:disabled){border-color:var(--v);color:var(--v)}
+.pager button.on{background:var(--v);border-color:var(--v);color:#fff}
+.pager button:disabled{opacity:.4;cursor:not-allowed}
+.pager .pg-gap{min-width:28px;text-align:center;color:var(--mute);pointer-events:none;border:0;background:transparent}
+
+/* Dual range */
+.dual{display:flex;flex-direction:column;gap:12px;padding:4px 2px 0}
+.dual-vals{display:flex;align-items:center;justify-content:center;gap:10px;font-size:18px}
+.dual-vals b{font-variant-numeric:tabular-nums;color:var(--v)}
+.dual-vals span{color:var(--mute)}
+.dual-track{position:relative;height:28px;display:grid;place-items:center}
+.dual-track::before{content:"";position:absolute;left:0;right:0;height:6px;border-radius:99px;background:var(--line)}
+.dual-range{position:absolute;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--v),var(--a));pointer-events:none}
+.dual-track input[type=range]{position:absolute;left:0;width:100%;appearance:none;background:none;pointer-events:none;margin:0;height:28px}
+.dual-track input[type=range]::-webkit-slider-thumb{appearance:none;pointer-events:auto;width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--v);box-shadow:0 4px 12px -4px rgba(40,30,120,.45);cursor:grab}
+.dual-track input[type=range]::-moz-range-thumb{pointer-events:auto;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid var(--v);box-shadow:0 4px 12px -4px rgba(40,30,120,.45);cursor:grab}
+.dual-ends{display:flex;justify-content:space-between;font-size:12px;color:var(--mute)}
+
+/* Typed toasts */
+.toast.t-success{--taccent:#15a37b}
+.toast.t-error{--taccent:#e5484d}
+.toast.t-warn{--taccent:#e5a00d}
+.toast.t-info{--taccent:#3b82f6}
+.toast[class*="t-"]{display:flex;align-items:flex-start;gap:10px;padding:12px 16px 14px}
+.toast .t-ico{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--taccent);color:#fff;margin-top:1px}
+.toast .t-body{flex:1;min-width:0}
+.toast .t-body b{display:block;font-size:13.5px;margin-bottom:2px}
+.toast .t-body span{display:block;font-size:12.5px;opacity:.82;line-height:1.4}
+.toast[class*="t-"]::after{background:var(--taccent)}
+.toast-btns .btn{padding:9px 16px;font-size:13px}
+.dual-track input[type=range]:nth-of-type(1){z-index:3}
+.dual-track input[type=range]:nth-of-type(2){z-index:4}
+.dual-track input[type=range]:nth-of-type(1):focus{z-index:5}
+.dual-track input[type=range]:nth-of-type(2):focus{z-index:5}
