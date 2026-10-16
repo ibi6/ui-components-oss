@@ -1,0 +1,6 @@
+.uic-ac{position:relative;display:inline-block;min-width:240px}
+.uic-ac-input{width:100%;box-sizing:border-box;padding:8px 12px;border:1px solid var(--uic-line,#c9cde6);border-radius:var(--uic-radius,8px);background:var(--uic-bg,#fff);color:var(--uic-fg,#1d1f3a)}
+.uic-ac-input:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:1px}
+.uic-ac-list{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:60;margin:0;padding:4px;list-style:none;background:var(--uic-bg,#fff);border:1px solid var(--uic-line,#c9cde6);border-radius:var(--uic-radius,8px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.uic-ac-opt{padding:8px 10px;border-radius:6px;cursor:pointer;color:var(--uic-fg,#1d1f3a)}
+.uic-ac-opt:hover,.uic-ac-active{background:var(--uic-hover,#eef0ff)}

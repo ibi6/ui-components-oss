@@ -1,0 +1,6 @@
+.uic-col{border:1px solid var(--uic-line,#c9cde6);border-radius:var(--uic-radius,8px);color:var(--uic-fg,#1d1f3a);background:var(--uic-bg,#fff)}
+.uic-col-btn{display:flex;justify-content:space-between;align-items:center;width:100%;padding:10px 14px;border:0;background:none;color:inherit;font-weight:600;cursor:pointer;text-align:left}
+.uic-col-btn::after{content:"▸";transition:transform .15s}
+.uic-col-open .uic-col-btn::after{transform:rotate(90deg)}
+.uic-col-btn:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:-2px;border-radius:var(--uic-radius,8px)}
+.uic-col-panel{padding:0 14px 12px}

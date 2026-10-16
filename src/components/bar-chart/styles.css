@@ -1,0 +1,5 @@
+.uic-bar{margin:0;display:inline-block;color:var(--uic-fg,#1d1f3a)}
+.uic-bar-svg{width:100%;max-width:420px;height:auto}
+.uic-bar-rect{fill:var(--uic-primary,#6c4dff)}
+.uic-bar-rect:hover{opacity:.8}
+.uic-bar-label{font-size:11px;fill:currentColor;opacity:.7}

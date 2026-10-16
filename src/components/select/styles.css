@@ -1,0 +1,9 @@
+.uic-select{position:relative;display:inline-block;min-width:200px}
+.uic-select-btn{width:100%;text-align:left;padding:8px 12px;border:1px solid var(--uic-line,#c9cde6);border-radius:var(--uic-radius,8px);background:var(--uic-bg,#fff);color:var(--uic-fg,#1d1f3a);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.uic-select-ph{opacity:.6}
+.uic-select-btn:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:2px}
+.uic-select-list{position:absolute;z-index:60;margin:0;padding:4px;list-style:none;min-width:200px;max-height:240px;overflow:auto;background:var(--uic-bg,#fff);border:1px solid var(--uic-line,#c9cde6);border-radius:var(--uic-radius,8px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.uic-select-opt{padding:8px 10px;border-radius:6px;cursor:pointer;color:var(--uic-fg,#1d1f3a)}
+.uic-select-opt:hover,.uic-select-active{background:var(--uic-hover,#eef0ff)}
+.uic-select-opt[aria-selected=true]{font-weight:600;color:var(--uic-primary,#6c4dff)}
+.uic-select-opt[aria-disabled=true]{opacity:.4;cursor:not-allowed}

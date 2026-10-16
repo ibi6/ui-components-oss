@@ -1,0 +1,8 @@
+.uic-card{display:block;overflow:hidden;border:1px solid var(--uic-line,#c9cde6);border-radius:var(--uic-radius,12px);background:var(--uic-bg,#fff);color:var(--uic-fg,#1d1f3a)}
+.uic-card-media img{display:block;width:100%}
+.uic-card-title{margin:0;padding:14px 16px 0;font-size:17px}
+.uic-card-body{padding:10px 16px 14px}
+.uic-card-footer{padding:10px 16px;border-top:1px solid var(--uic-line,#c9cde6);font-size:13px}
+.uic-card-click{cursor:pointer}
+.uic-card-click:hover{box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.uic-card-click:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:2px}

@@ -42,5 +42,25 @@
 - `new Breadcrumb(host, {items:[{label,href}], separator})`（末项 aria-current=page）
 - `new Alert(host, {type, title, message, closable, onClose})` → `.close()`
 - `new Empty(host, {title, description, icon, actionText, onAction})`
+- `new Calendar(host, {value, min, max, weekStart, onChange})` → `.value` `.select(date)`（role=grid；方向键/Home/End/PageUp/PageDown/Enter）；`fmtDate(d)`
+- `new Select(host, {options:[{value,label,disabled}], value, multiple, placeholder, onChange})` → `.value` `.set([..])` `.open()` `.close()`（combobox+listbox，首字母跳转）
+- `new Autocomplete(host, {source: string[] | (q)=>Promise<string[]>, minChars, maxItems, onSelect})` → `.value` `.query()`（异步结果防乱序）
+- `new Upload(host, {accept, multiple, maxSize, maxFiles, onChange, onReject})` → `.files` `.add(files)` `.remove(i)`（仅前端拖拽/选择，不发请求）
+- `new Form(host, {fields:[{name,label,type,rules}], onSubmit, onInvalid})` → `.values` `.check(name)` `.submit()`；`rules.required/minLength/maxLength/pattern/email`，`validate(value, rules)`
+- `new Tree(host, {nodes:[{id,label,children}], expanded, selected, onSelect, onToggle})` → `.select(id)` `.toggle(id)`（WAI-ARIA tree，方向键）
+- `new Timeline(host, {items:[{title,time,description,status}]})`
+- `new Collapse(host, {trigger, content, open, onToggle})` → `.open()` `.close()` `.toggle()`
+- `new Stat(host, {label, value, delta, hint})` → `.set(value, delta?)`
+- `new Card(host, {title, body, footer, media, onClick})`
+- `new Sparkline(host, {data, width, height, area, label})` → `.set(data)`；`sparkPoints()`
+- `new BarChart(host, {data:[{label,value}], width, height, title})` → `.set(data)`；`barRects()`
+- `new Donut(host, {data:[{label,value,color}], size, thickness, center, title})` → `.set(data)`；`donutArcs()`
+- `new CountUp(host, {to, from, duration, decimals, format})` → `.start()` `.finish()`（尊重 prefers-reduced-motion）
+- `new Marquee(host, {items, speed, pauseOnHover, reverse})` → `.pause()` `.play()`（空格暂停，副本 aria-hidden）
+
+## 共享浮层定位（`src/position.ts`）
+
+`computePosition(anchorBox, floatBox, viewport, side, gap)` 为纯函数：首选一侧放不下则翻转到对侧，并夹在视口内；`autoPosition(anchor, floating, side, gap)` 设置 `position:fixed` 并随滚动/缩放更新，返回 `{update, dispose}`。Dropdown、Popover、Tooltip、Select 均使用它。
+
 
 演示站（`index.html`）仍使用 `js/main.js` / `css/style.css`，与库独立。

@@ -1,9 +1,11 @@
 import './styles.css';
 import { h, uid } from '../../utils';
+import { autoPosition } from '../../position';
 export interface PopoverOptions { content: string | HTMLElement; title?: string; onToggle?: (open: boolean) => void }
 /** Click-triggered popover anchored to a trigger. role=dialog, Esc/outside click closes. */
 export class Popover {
   readonly el: HTMLElement;
+  private pos?: { dispose: () => void };
   private onDoc = (e: Event) => { if (!this.el.contains(e.target as Node) && e.target !== this.trigger && !this.trigger.contains(e.target as Node)) this.close(); };
   constructor(private trigger: HTMLElement, private opts: PopoverOptions) {
     const id = uid('uic-pop');
@@ -18,8 +20,8 @@ export class Popover {
   }
   private onClick = () => this.toggle();
   get opened() { return !this.el.hidden; }
-  open() { this.el.hidden = false; this.trigger.setAttribute('aria-expanded', 'true'); document.addEventListener('click', this.onDoc); this.opts.onToggle?.(true); }
-  close() { if (!this.opened) return; this.el.hidden = true; this.trigger.setAttribute('aria-expanded', 'false'); document.removeEventListener('click', this.onDoc); this.opts.onToggle?.(false); }
+  open() { this.el.hidden = false; this.trigger.setAttribute('aria-expanded', 'true'); document.addEventListener('click', this.onDoc); this.pos = autoPosition(this.trigger, this.el, 'bottom', 6); this.opts.onToggle?.(true); }
+  close() { if (!this.opened) return; this.pos?.dispose(); this.pos = undefined; this.el.hidden = true; this.trigger.setAttribute('aria-expanded', 'false'); document.removeEventListener('click', this.onDoc); this.opts.onToggle?.(false); }
   toggle() { this.opened ? this.close() : this.open(); }
   destroy() { this.close(); this.trigger.removeEventListener('click', this.onClick); this.el.remove(); }
 }

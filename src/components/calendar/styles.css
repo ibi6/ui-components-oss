@@ -1,0 +1,14 @@
+.uic-cal{display:inline-block;padding:10px;background:var(--uic-bg,#fff);color:var(--uic-fg,#1d1f3a);border:1px solid var(--uic-line,#c9cde6);border-radius:var(--uic-radius,10px)}
+.uic-cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.uic-cal-title{font-weight:600}
+.uic-cal-nav{border:0;background:none;color:inherit;font-size:18px;width:28px;height:28px;border-radius:6px;cursor:pointer}
+.uic-cal-nav:hover{background:var(--uic-hover,#eef0ff)}
+.uic-cal-row{display:grid;grid-template-columns:repeat(7,34px)}
+.uic-cal-dow{text-align:center;font-size:12px;opacity:.6;padding:4px 0}
+.uic-cal-day{height:34px;border:0;border-radius:50%;background:none;color:inherit;cursor:pointer}
+.uic-cal-day:hover{background:var(--uic-hover,#eef0ff)}
+.uic-cal-out{opacity:.4}
+.uic-cal-today{box-shadow:inset 0 0 0 1px var(--uic-primary,#6c4dff)}
+.uic-cal-day[aria-selected=true]{background:var(--uic-primary,#6c4dff);color:#fff}
+.uic-cal-day:disabled{opacity:.25;cursor:not-allowed}
+.uic-cal-day:focus-visible,.uic-cal-nav:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:1px}

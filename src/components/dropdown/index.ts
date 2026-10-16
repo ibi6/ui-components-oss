@@ -1,10 +1,12 @@
 import './styles.css';
 import { h, uid } from '../../utils';
+import { autoPosition } from '../../position';
 export interface DropdownItem { label: string; value?: string; disabled?: boolean }
 export interface DropdownOptions { label: string; items: DropdownItem[]; onSelect?: (item: DropdownItem, index: number) => void }
 /** Menu button: aria-haspopup=menu, role=menu/menuitem, arrows/Home/End/Esc. */
 export class Dropdown {
   readonly el: HTMLElement; readonly button: HTMLButtonElement; readonly menu: HTMLElement;
+  private pos?: { dispose: () => void };
   private onDoc = (e: Event) => { if (!this.el.contains(e.target as Node)) this.close(); };
   constructor(host: HTMLElement, private opts: DropdownOptions) {
     this.el = h('div', 'uic-dd');
@@ -33,8 +35,8 @@ export class Dropdown {
     if (t >= 0) { e.preventDefault(); its[t]?.focus(); }
   }
   get opened() { return !this.menu.hidden; }
-  open() { this.menu.hidden = false; this.button.setAttribute('aria-expanded', 'true'); document.addEventListener('click', this.onDoc); this.items()[0]?.focus(); }
-  close() { this.menu.hidden = true; this.button.setAttribute('aria-expanded', 'false'); document.removeEventListener('click', this.onDoc); }
+  open() { this.menu.hidden = false; this.button.setAttribute('aria-expanded', 'true'); document.addEventListener('click', this.onDoc); this.pos = autoPosition(this.button, this.menu, 'bottom', 4); this.items()[0]?.focus(); }
+  close() { this.pos?.dispose(); this.pos = undefined; this.menu.hidden = true; this.button.setAttribute('aria-expanded', 'false'); document.removeEventListener('click', this.onDoc); }
   toggle() { this.opened ? this.close() : this.open(); }
   destroy() { this.close(); this.el.remove(); }
 }

@@ -1,0 +1,8 @@
+.uic-marq{display:flex;overflow:hidden;color:var(--uic-fg,#1d1f3a)}
+.uic-marq-track{flex:none;display:flex;gap:32px;padding-right:32px;animation:uic-marq var(--uic-marq-dur,20s) linear infinite}
+.uic-marq-rev .uic-marq-track{animation-direction:reverse}
+.uic-marq-pause:hover .uic-marq-track,.uic-marq:focus-within .uic-marq-track,.uic-marq-paused .uic-marq-track{animation-play-state:paused}
+.uic-marq:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:2px}
+.uic-marq-item{white-space:nowrap}
+@keyframes uic-marq{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.uic-marq-track{animation:none}}
