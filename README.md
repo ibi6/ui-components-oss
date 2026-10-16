@@ -3,9 +3,77 @@
 > 🌐 **在线预览**：https://ibi6.github.io/ui-components-oss/  
 > 📖 **文档入口**：[`docs/index.html`](docs/index.html)
 
-一个纯前端的动态 UI 组件合集：按钮、加载动画、开关、表单、导航、图表、3D、小游戏，以及命令面板、数据表格、**侧边抽屉、搜索选择器、完整分页、双滑块、多类型 Toast** 这类完整组件。没有构建步骤，没有第三方依赖，打开 `index.html` 就能看、能点、能拖。
+一个纯前端的动态 UI 组件合集：按钮、加载动画、开关、表单、导航、图表、3D、小游戏，以及命令面板、数据表格、**侧边抽屉、搜索选择器、完整分页、双滑块、多类型 Toast** 这类完整组件。演示站没有构建步骤、没有第三方依赖，打开 `index.html` 就能看、能点、能拖；其中 5 个实用组件另有可 npm 安装的 TypeScript 库版本（见下）。
 
 ![预览](docs/preview.png)
+
+## 两部分：库 vs 演示图鉴（说清楚）
+
+| | 📦 组件库（`src/`） | 🎨 演示图鉴（`index.html` / `css/` / `js/`） |
+| --- | --- | --- |
+| 内容 | **5 个**组件：Drawer、SearchSelect、Pagination、DualRange、Toast | 241 个手写组件 + 576 个变体 |
+| 形态 | TypeScript、npm 包 `@ibi6/ui-components`、ESM/CJS/IIFE + CSS + `.d.ts` | 单页静态站，无模块化 |
+| 质量 | 独立源码、`uic-` 前缀样式、Vitest 行为测试、基础 a11y | 展示/抄作业用，大量假数据 demo |
+| 状态 | 0.1.0，**尚未发布到 npm registry**（见下方本地使用） | 在线运行：GitHub Pages |
+
+诚实说明：图鉴里其余组件**没有**迁移进库；库的 5 个组件逻辑抽取自演示站的实用套件，并改成了可实例化的 API。测试跑在 happy-dom 里，**没有真实浏览器 / Safari / 触屏的自动化测试**。
+
+### 安装与使用
+
+发布到 npm 后：
+
+```bash
+npm i @ibi6/ui-components
+```
+
+在发布之前，用本地 link / 打包：
+
+```bash
+git clone https://github.com/ibi6/ui-components-oss.git
+cd ui-components-oss && npm install && npm run build
+npm link                                  # 本仓库
+cd /path/to/your-app && npm link @ibi6/ui-components
+# 或：npm pack 生成 tgz，然后 npm i ../ui-components-oss/ibi6-ui-components-0.1.0.tgz
+```
+
+```ts
+import { Drawer, SearchSelect, Pagination, DualRange, toast } from '@ibi6/ui-components';
+import '@ibi6/ui-components/style.css';
+
+toast.success('已保存', '成功');
+
+const drawer = new Drawer({ title: '设置', content: '<p>内容</p>', side: 'right' });
+drawer.open();
+
+new SearchSelect(document.querySelector('#city')!, {
+  options: [{ value: 'bj', label: '北京', group: '华北' }, { value: 'sh', label: '上海', group: '华东' }],
+  onChange: (o) => console.log(o.value),
+});
+new Pagination(document.querySelector('#pg')!, { pages: 12, onChange: (p) => console.log(p) });
+new DualRange(document.querySelector('#price')!, { min: 0, max: 1000, step: 10, value: [200, 780], format: (n) => '¥' + n });
+```
+
+无构建工具的页面可用 IIFE：`<link rel="stylesheet" href="ui-components.css"><script src="ui-components.iife.js"></script>`，全局变量 `UIComponents`。
+主题可用 CSS 变量覆盖：`--uic-primary`、`--uic-accent`、`--uic-ink`、`--uic-bg`、`--uic-panel`、`--uic-line`、`--uic-mute`。
+
+### 开发命令
+
+```bash
+npm run dev        # Vite 开发服务器
+npm run typecheck  # tsc --noEmit
+npm test           # Vitest（happy-dom）
+npm run build      # 产出 dist/lib：ESM、CJS、IIFE、CSS、.d.ts
+```
+
+### 无障碍最低线
+
+- Drawer：`role="dialog"` + `aria-modal` + `aria-labelledby`，Esc 关闭，Tab 焦点陷阱，关闭后焦点归还
+- SearchSelect：`aria-haspopup/expanded/controls`，`role="listbox/option"`，键盘 ↑↓ / Enter / Esc
+- Pagination：`<nav aria-label>` + 真 `<button>`，当前页 `aria-current="page"`
+- DualRange：两个原生 `input[type=range]`，带 `aria-label`
+- Toast：错误/警告 `role="alert"`，其余 `role="status"`
+
+更多见 [`docs/library.md`](docs/library.md)。
 
 ## 数量（说清楚）
 
@@ -148,6 +216,9 @@ python3 -m http.server 8000     # 然后打开 http://localhost:8000
 ## 项目结构
 
 ```
+src/                组件库源码（TypeScript，每个组件一个目录：index.ts + styles.css）
+tests/              Vitest 测试
+vite.config.ts      库模式构建配置
 index.html          页面骨架（顶部的主要组件 + 实用套件）
 css/style.css       全部样式
 js/main.js          全部交互（含图鉴的生成、代码面板、各组件逻辑）
@@ -164,7 +235,7 @@ ui-fused/           可选：融合版 UI skill 与参考资源
 
 ## 说明
 
-本项目的代码由 AI 辅助生成，并经过人工审阅和基本的浏览器测试（无控制台报错、主要交互手动点过），但没有完整的自动化测试。
+本项目的代码由 AI 辅助生成，并经过人工审阅和基本的浏览器测试（无控制台报错、主要交互手动点过），但演示图鉴没有自动化测试（`src/` 库部分有 Vitest 单元测试，见上）。
 
 ## 许可证
 

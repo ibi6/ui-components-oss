@@ -1,0 +1,6 @@
+.uic-pager{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.uic-pager button{min-width:36px;height:36px;padding:0 10px;border:1px solid var(--uic-line,#dcdff0);border-radius:10px;background:var(--uic-panel,#fff);color:var(--uic-ink,#1b1b3a);font-weight:600;font-size:13px;transition:background .15s,border-color .15s,color .15s,transform .1s}
+.uic-pager button:hover:not(:disabled){border-color:var(--uic-primary,#6c4dff);color:var(--uic-primary,#6c4dff)}
+.uic-pager button.on{background:var(--uic-primary,#6c4dff);border-color:var(--uic-primary,#6c4dff);color:#fff}
+.uic-pager button:disabled{opacity:.4;cursor:not-allowed}
+.uic-pager .uic-pg-gap{min-width:28px;text-align:center;color:var(--uic-mute,#6b6d8f);pointer-events:none;border:0;background:transparent}

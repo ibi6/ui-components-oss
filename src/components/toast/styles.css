@@ -1,0 +1,15 @@
+.uic-toasts{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:9999;max-width:calc(100% - 32px)}
+.uic-toast{position:relative;overflow:hidden;background:var(--uic-ink,#1b1b3a);color:var(--uic-bg,#eef0f8);border-radius:14px;padding:12px 16px 14px;box-shadow:var(--uic-shadow,0 14px 34px -16px rgba(40,30,120,.3));animation:uic-in .5s cubic-bezier(.34,1.56,.64,1);cursor:pointer;display:flex;align-items:flex-start;gap:10px}
+.uic-toast.out{animation:uic-out .3s ease forwards}
+.uic-toast::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--taccent);transform-origin:left;animation:uic-bar var(--uic-dur,3s) linear forwards}
+@keyframes uic-in{from{transform:translateX(120%);opacity:0}}
+@keyframes uic-out{to{transform:translateX(120%);opacity:0}}
+@keyframes uic-bar{to{transform:scaleX(0)}}
+.uic-toast.uic-t-success{--taccent:#15a37b}
+.uic-toast.uic-t-error{--taccent:#e5484d}
+.uic-toast.uic-t-warn{--taccent:#e5a00d}
+.uic-toast.uic-t-info{--taccent:#3b82f6}
+.uic-toast .uic-t-ico{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--taccent);color:#fff;margin-top:1px}
+.uic-toast .uic-t-body{flex:1;min-width:0}
+.uic-toast .uic-t-body b{display:block;font-size:13.5px;margin-bottom:2px}
+.uic-toast .uic-t-body span{display:block;font-size:12.5px;opacity:.82;line-height:1.4}
