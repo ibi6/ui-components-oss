@@ -1,0 +1,6 @@
+.uic-bc-list{display:flex;flex-wrap:wrap;list-style:none;margin:0;padding:0;gap:6px;color:var(--uic-muted,#7b7fa3)}
+.uic-bc-item{display:inline-flex;gap:6px}
+.uic-bc-link{color:var(--uic-primary,#6c4dff);text-decoration:none}
+.uic-bc-link:hover{text-decoration:underline}
+.uic-bc-link:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);border-radius:3px}
+.uic-bc-cur[aria-current]{color:var(--uic-fg,#1d1f3a);font-weight:600}

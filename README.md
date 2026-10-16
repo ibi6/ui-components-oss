@@ -11,7 +11,7 @@
 
 | | 📦 组件库（`src/`） | 🎨 演示图鉴（`index.html` / `css/` / `js/`） |
 | --- | --- | --- |
-| 内容 | **16 个**组件：Drawer、SearchSelect、Pagination、DualRange、Toast、Accordion、Modal、Tabs、Switch、Progress、Steps、Carousel、DataTable、Skeleton、Tooltip、CommandPalette | 241 个手写组件 + 576 个变体 |
+| 内容 | **31 个**组件：Drawer、SearchSelect、Pagination、DualRange、Toast、Accordion、Modal、Tabs、Switch、Progress、Steps、Carousel、DataTable、Skeleton、Tooltip、CommandPalette、Dropdown、Popover、Input、Textarea、OtpInput、Checkbox、RadioGroup、Slider、TagInput、Rating、Avatar、Badge、Breadcrumb、Alert、Empty | 241 个手写组件 + 576 个变体 |
 | 形态 | TypeScript、npm 包 `@ibi6/ui-components`、ESM/CJS/IIFE + CSS + `.d.ts` | 单页静态站，无模块化 |
 | 质量 | 独立源码、`uic-` 前缀样式、Vitest 行为测试、基础 a11y | 展示/抄作业用，大量假数据 demo |
 | 状态 | 0.1.0，**尚未发布到 npm registry**（见下方本地使用） | 在线运行：GitHub Pages |

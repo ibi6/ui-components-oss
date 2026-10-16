@@ -1,0 +1,5 @@
+.uic-radios{display:inline-flex;flex-direction:column;gap:8px}
+.uic-radio{display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:var(--uic-fg,#1d1f3a)}
+.uic-radio-input{width:18px;height:18px;margin:0;accent-color:var(--uic-primary,#6c4dff)}
+.uic-radio-input:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:2px}
+.uic-radio-input:disabled{cursor:not-allowed}

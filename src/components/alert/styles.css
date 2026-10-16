@@ -1,0 +1,8 @@
+.uic-alert{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:var(--uic-radius,8px);border:1px solid;border-left-width:4px}
+.uic-alert-body{flex:1;display:flex;flex-direction:column;gap:2px}
+.uic-a-info{background:#eef4ff;border-color:#3b82f6;color:#1e3a8a}
+.uic-a-success{background:#eafaf0;border-color:var(--uic-success,#2fb344);color:#14532d}
+.uic-a-warn{background:#fff7e6;border-color:var(--uic-warn,#f5a623);color:#7a4b00}
+.uic-a-error{background:#fdecec;border-color:var(--uic-danger,#e5484d);color:#7f1d1d}
+.uic-alert-x{border:0;background:none;color:inherit;font-size:18px;cursor:pointer;line-height:1}
+.uic-alert-x:focus-visible{outline:2px solid currentColor;border-radius:4px}

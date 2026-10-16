@@ -1,7 +1,7 @@
 {
   "name": "@ibi6/ui-components",
-  "version": "0.2.0",
-  "description": "Lightweight, zero-dependency, accessible UI components: Drawer, SearchSelect, Pagination, DualRange, Toast, Accordion, Modal, Tabs, Switch, Progress, Steps, Carousel, DataTable, Skeleton, Tooltip, CommandPalette.",
+  "version": "0.3.0",
+  "description": "Lightweight, zero-dependency, accessible UI components: Drawer, SearchSelect, Pagination, DualRange, Toast, Accordion, Modal, Tabs, Switch, Progress, Steps, Carousel, DataTable, Skeleton, Tooltip, CommandPalette, Dropdown, Popover, Input, Textarea, OtpInput, Checkbox, RadioGroup, Slider, TagInput, Rating, Avatar, Badge, Breadcrumb, Alert, Empty.",
   "license": "MIT",
   "type": "module",
   "repository": {

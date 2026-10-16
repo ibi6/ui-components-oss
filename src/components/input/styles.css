@@ -1,0 +1,7 @@
+.uic-input{position:relative;display:inline-flex;align-items:center;width:260px}
+.uic-input-el{width:100%;box-sizing:border-box;padding:9px 56px 9px 12px;border:1px solid var(--uic-line,#c9cde6);border-radius:var(--uic-radius,8px);background:var(--uic-bg,#fff);color:var(--uic-fg,#1d1f3a);font:inherit}
+.uic-input-el:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:1px}
+.uic-input-el:disabled{opacity:.5}
+.uic-input-btn{position:absolute;right:6px;border:0;background:none;color:var(--uic-muted,#7b7fa3);cursor:pointer;padding:2px 6px;font-size:16px}
+.uic-input-clear{right:30px}
+.uic-input-btn:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);border-radius:4px}

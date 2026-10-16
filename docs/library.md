@@ -27,5 +27,20 @@
 - `new Skeleton(host, {variant:'text'|'circle'|'rect', lines, width, height})` → `.resolve(html)`
 - `new Tooltip(triggerEl, {text, placement})` → `.setText()` `.destroy()`
 - `new CommandPalette({commands:[{id,label,hint,run}], hotkey})` → `.open()` `.close()`（Ctrl/Cmd+K）
+- `new Dropdown(host, {label, items:[{label,value,disabled}], onSelect})` → `.open()` `.close()` `.toggle()`（menu/menuitem，↑↓/Home/End/Esc）
+- `new Popover(triggerEl, {content, title, onToggle})` → `.open()` `.close()` `.toggle()`（role=dialog，Esc/点外部关闭）
+- `new Input(host, {value, type:'text'|'password'|..., clearable, onInput})` → `.value` `.reveal(bool)`
+- `new Textarea(host, {maxLength, value, onInput})` → `.value` `.length`（实时字数，超限 aria-invalid）
+- `new OtpInput(host, {length, onChange, onComplete})` → `.value` `.fill(text)` `.clear()`（自动跳格、粘贴填充）
+- `new Checkbox(host, {label, checked, indeterminate, onChange})` → `.checked` `.set(v)`
+- `new RadioGroup(host, {options:[{label,value}], value, onChange})` → `.value` `.set(v)`
+- `new Slider(host, {min,max,step,value,format,onChange})` → `.value` `.set(v)`
+- `new TagInput(host, {tags, max, allowDuplicates, onChange})` → `.tags` `.add(t)` `.remove(i)`（Enter/逗号添加，Backspace 删除）
+- `new Rating(host, {value, max, readOnly, onChange})` → `.value` `.set(v)`（←/→，再点当前值清零）
+- `new Avatar(host, {name, src, size, status})`（图片失败回退首字母）；`initials(name)`
+- `new Badge(host, {text, variant, dot, max})` → `.set(text)`
+- `new Breadcrumb(host, {items:[{label,href}], separator})`（末项 aria-current=page）
+- `new Alert(host, {type, title, message, closable, onClose})` → `.close()`
+- `new Empty(host, {title, description, icon, actionText, onAction})`
 
 演示站（`index.html`）仍使用 `js/main.js` / `css/style.css`，与库独立。

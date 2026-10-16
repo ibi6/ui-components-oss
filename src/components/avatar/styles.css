@@ -1,0 +1,5 @@
+.uic-avatar{position:relative;display:inline-flex;align-items:center;justify-content:center;width:var(--uic-size,40px);height:var(--uic-size,40px);border-radius:50%;background:var(--uic-hover,#eef0ff);color:var(--uic-primary,#6c4dff);font-weight:600;font-size:calc(var(--uic-size,40px)*.38);overflow:visible;user-select:none}
+.uic-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.uic-avatar-dot{position:absolute;right:0;bottom:0;width:25%;height:25%;border-radius:50%;border:2px solid var(--uic-bg,#fff);background:#9aa}
+.uic-avatar-dot.uic-online{background:var(--uic-success,#2fb344)}
+.uic-avatar-dot.uic-busy{background:var(--uic-danger,#e5484d)}
