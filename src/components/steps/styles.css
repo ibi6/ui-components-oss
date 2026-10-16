@@ -1,0 +1,10 @@
+.uic-steps{display:flex;list-style:none;margin:0;padding:0;gap:0}
+.uic-step{display:flex;align-items:center;gap:8px;flex:1;color:var(--uic-mute,#6b6d8f);font-size:14px}
+.uic-step:not(:last-child)::after{content:"";flex:1;height:2px;margin:0 10px;background:var(--uic-line,#dcdff0)}
+.uic-step.done:not(:last-child)::after{background:var(--uic-primary,#6c4dff)}
+.uic-step-dot{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;background:var(--uic-bg,#eef0f8);border:1px solid var(--uic-line,#dcdff0);flex:none}
+.uic-step.done .uic-step-dot,.uic-step.current .uic-step-dot{background:var(--uic-primary,#6c4dff);border-color:var(--uic-primary,#6c4dff);color:#fff}
+.uic-step.current{color:var(--uic-ink,#1b1b3a);font-weight:600}
+.uic-step-label{border:0;background:none;font:inherit;color:inherit;padding:0}
+button.uic-step-label{cursor:pointer}
+button.uic-step-label:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:2px}

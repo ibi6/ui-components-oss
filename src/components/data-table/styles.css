@@ -1,0 +1,10 @@
+.uic-table{width:100%;border-collapse:collapse;font-size:14px;color:var(--uic-ink,#1b1b3a);background:var(--uic-panel,#fff)}
+.uic-table caption{text-align:left;padding:8px 0;color:var(--uic-mute,#6b6d8f)}
+.uic-table th,.uic-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--uic-line,#dcdff0)}
+.uic-table th{background:var(--uic-bg,#eef0f8);font-weight:600;color:var(--uic-mute,#6b6d8f)}
+.uic-table tbody tr:hover{background:var(--uic-bg,#eef0f8)}
+.uic-th-btn{border:0;background:none;font:inherit;font-weight:inherit;color:inherit;cursor:pointer;padding:0}
+.uic-th-btn::after{content:" ↕";opacity:.4}
+th[aria-sort=ascending] .uic-th-btn::after{content:" ↑";opacity:1;color:var(--uic-primary,#6c4dff)}
+th[aria-sort=descending] .uic-th-btn::after{content:" ↓";opacity:1;color:var(--uic-primary,#6c4dff)}
+.uic-th-btn:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:2px}

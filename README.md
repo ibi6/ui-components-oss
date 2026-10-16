@@ -11,7 +11,7 @@
 
 | | 📦 组件库（`src/`） | 🎨 演示图鉴（`index.html` / `css/` / `js/`） |
 | --- | --- | --- |
-| 内容 | **5 个**组件：Drawer、SearchSelect、Pagination、DualRange、Toast | 241 个手写组件 + 576 个变体 |
+| 内容 | **16 个**组件：Drawer、SearchSelect、Pagination、DualRange、Toast、Accordion、Modal、Tabs、Switch、Progress、Steps、Carousel、DataTable、Skeleton、Tooltip、CommandPalette | 241 个手写组件 + 576 个变体 |
 | 形态 | TypeScript、npm 包 `@ibi6/ui-components`、ESM/CJS/IIFE + CSS + `.d.ts` | 单页静态站，无模块化 |
 | 质量 | 独立源码、`uic-` 前缀样式、Vitest 行为测试、基础 a11y | 展示/抄作业用，大量假数据 demo |
 | 状态 | 0.1.0，**尚未发布到 npm registry**（见下方本地使用） | 在线运行：GitHub Pages |
@@ -33,11 +33,11 @@ git clone https://github.com/ibi6/ui-components-oss.git
 cd ui-components-oss && npm install && npm run build
 npm link                                  # 本仓库
 cd /path/to/your-app && npm link @ibi6/ui-components
-# 或：npm pack 生成 tgz，然后 npm i ../ui-components-oss/ibi6-ui-components-0.1.0.tgz
+# 或：npm pack 生成 tgz，然后 npm i ../ui-components-oss/ibi6-ui-components-0.2.0.tgz
 ```
 
 ```ts
-import { Drawer, SearchSelect, Pagination, DualRange, toast } from '@ibi6/ui-components';
+import { Drawer, SearchSelect, Pagination, DualRange, toast, Modal, Tabs, Switch } from '@ibi6/ui-components';
 import '@ibi6/ui-components/style.css';
 
 toast.success('已保存', '成功');
@@ -72,6 +72,17 @@ npm run build      # 产出 dist/lib：ESM、CJS、IIFE、CSS、.d.ts
 - Pagination：`<nav aria-label>` + 真 `<button>`，当前页 `aria-current="page"`
 - DualRange：两个原生 `input[type=range]`，带 `aria-label`
 - Toast：错误/警告 `role="alert"`，其余 `role="status"`
+- Accordion：真 `<button>` + `aria-expanded/aria-controls`，面板 `role="region"`
+- Modal：`role="dialog|alertdialog"` + `aria-modal`，焦点陷阱、Esc、焦点归还
+- Tabs：`tablist/tab/tabpanel`，roving tabindex，←/→/Home/End
+- Switch：`role="switch"` + `aria-checked`
+- Progress：`role="progressbar"` + `aria-valuenow`
+- Steps：当前步 `aria-current="step"`，已完成步可点击回退
+- Carousel：`aria-roledescription`，上/下一张按钮、圆点、←/→，悬停/聚焦暂停自动播放
+- DataTable：`th[scope=col]` + `aria-sort`，排序头为真按钮
+- Skeleton：`aria-busy`，装饰块 `aria-hidden`
+- Tooltip：`role="tooltip"` + `aria-describedby`，hover/focus 显示，Esc 隐藏
+- CommandPalette：`combobox/listbox/option` + `aria-activedescendant`，Ctrl/Cmd+K
 
 更多见 [`docs/library.md`](docs/library.md)。
 

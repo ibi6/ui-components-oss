@@ -1,0 +1,8 @@
+.uic-tabs-list{display:flex;gap:4px;border-bottom:1px solid var(--uic-line,#dcdff0)}
+.uic-tab{padding:10px 16px;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;background:transparent;font:inherit;color:var(--uic-mute,#6b6d8f);cursor:pointer}
+.uic-tab:hover:not(:disabled){color:var(--uic-ink,#1b1b3a)}
+.uic-tab[aria-selected=true]{color:var(--uic-primary,#6c4dff);border-bottom-color:var(--uic-primary,#6c4dff);font-weight:600}
+.uic-tab:disabled{opacity:.4;cursor:not-allowed}
+.uic-tab:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:-2px;border-radius:6px}
+.uic-tabpanel{padding:16px 4px;color:var(--uic-ink,#1b1b3a);line-height:1.6}
+.uic-tabpanel[hidden]{display:none}

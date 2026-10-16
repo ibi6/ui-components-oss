@@ -1,0 +1,7 @@
+.uic-skel{display:flex;flex-direction:column;gap:10px}
+.uic-skel-text,.uic-skel-circle,.uic-skel-rect{display:block;background:linear-gradient(90deg,var(--uic-bg,#eef0f8) 25%,var(--uic-line,#dcdff0) 50%,var(--uic-bg,#eef0f8) 75%);background-size:200% 100%;animation:uic-skel 1.4s linear infinite}
+.uic-skel-text{height:14px;border-radius:6px}
+.uic-skel-circle{width:48px;height:48px;border-radius:50%}
+.uic-skel-rect{width:100%;height:120px;border-radius:12px}
+@keyframes uic-skel{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.uic-skel-text,.uic-skel-circle,.uic-skel-rect{animation:none}}

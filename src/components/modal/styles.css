@@ -1,0 +1,10 @@
+.uic-modal-mask{position:fixed;inset:0;z-index:60;display:grid;place-items:center;background:rgba(10,8,40,.5);backdrop-filter:blur(4px)}
+.uic-modal-mask[hidden]{display:none!important}
+.uic-modal{width:min(420px,90vw);background:var(--uic-panel,#fff);color:var(--uic-ink,#1b1b3a);border-radius:16px;padding:22px;box-shadow:0 30px 80px -20px rgba(10,8,40,.6);outline:none}
+.uic-modal h3{margin:0 0 10px;font-size:17px}
+.uic-modal-bd{color:var(--uic-mute,#6b6d8f);line-height:1.6}
+.uic-modal-ft{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.uic-modal-btn{padding:9px 16px;border-radius:10px;border:1px solid var(--uic-line,#dcdff0);background:var(--uic-bg,#eef0f8);color:var(--uic-ink,#1b1b3a);font:inherit;cursor:pointer}
+.uic-modal-btn.primary{background:var(--uic-primary,#6c4dff);border-color:var(--uic-primary,#6c4dff);color:#fff}
+.uic-modal-btn.danger{background:var(--uic-danger,#e5484d);border-color:var(--uic-danger,#e5484d)}
+.uic-modal-btn:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:2px}

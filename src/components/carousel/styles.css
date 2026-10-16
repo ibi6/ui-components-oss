@@ -1,0 +1,11 @@
+.uic-car{position:relative;overflow:hidden;border-radius:14px;background:var(--uic-panel,#fff);border:1px solid var(--uic-line,#dcdff0)}
+.uic-car:focus-visible{outline:2px solid var(--uic-primary,#6c4dff)}
+.uic-car-track{display:flex;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.uic-car-slide{flex:0 0 100%;min-height:160px;padding:24px;box-sizing:border-box}
+.uic-car-prev,.uic-car-next{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:1px solid var(--uic-line,#dcdff0);background:var(--uic-panel,#fff);color:var(--uic-ink,#1b1b3a);font-size:20px;cursor:pointer}
+.uic-car-prev{left:10px}.uic-car-next{right:10px}
+.uic-car-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:8px}
+.uic-car-dot{width:9px;height:9px;padding:0;border-radius:50%;border:0;background:var(--uic-line,#dcdff0);cursor:pointer}
+.uic-car-dot[aria-current=true]{background:var(--uic-primary,#6c4dff);width:22px;border-radius:6px}
+.uic-car button:focus-visible{outline:2px solid var(--uic-primary,#6c4dff);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.uic-car-track{transition:none}}

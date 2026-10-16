@@ -1,0 +1,8 @@
+.uic-progress-bar{height:8px;border-radius:999px;background:var(--uic-bg,#eef0f8);overflow:hidden}
+.uic-progress-bar .uic-progress-fill{height:100%;width:var(--uic-pct,0%);background:var(--uic-primary,#6c4dff);border-radius:inherit;transition:width .3s ease}
+.uic-progress-bar.indeterminate .uic-progress-fill{width:40%;animation:uic-prog 1.2s ease-in-out infinite}
+@keyframes uic-prog{0%{margin-left:-40%}100%{margin-left:100%}}
+.uic-progress-ring{width:72px;height:72px;border-radius:50%;background:conic-gradient(var(--uic-primary,#6c4dff) var(--uic-pct,0%),var(--uic-bg,#eef0f8) 0);display:grid;place-items:center;position:relative}
+.uic-progress-ring::before{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--uic-panel,#fff)}
+.uic-progress-ring .uic-progress-fill{position:relative;font-size:13px;font-weight:700;color:var(--uic-ink,#1b1b3a)}
+@media (prefers-reduced-motion:reduce){.uic-progress-bar .uic-progress-fill{transition:none;animation:none!important}}

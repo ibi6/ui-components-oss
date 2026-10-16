@@ -1,0 +1,9 @@
+.uic-cmd-mask{position:fixed;inset:0;z-index:70;display:flex;justify-content:center;align-items:flex-start;padding-top:14vh;background:rgba(10,8,40,.5);backdrop-filter:blur(4px)}
+.uic-cmd-mask[hidden]{display:none!important}
+.uic-cmd{width:min(520px,92vw);background:var(--uic-panel,#fff);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(10,8,40,.6)}
+.uic-cmd-in{width:100%;box-sizing:border-box;padding:16px 18px;border:0;border-bottom:1px solid var(--uic-line,#dcdff0);font:inherit;font-size:15px;background:transparent;color:var(--uic-ink,#1b1b3a);outline:none}
+.uic-cmd-list{list-style:none;margin:0;padding:6px;max-height:320px;overflow:auto}
+.uic-cmd-list li{display:flex;justify-content:space-between;padding:10px 12px;border-radius:8px;cursor:pointer;color:var(--uic-ink,#1b1b3a)}
+.uic-cmd-list li[aria-selected=true]{background:var(--uic-primary,#6c4dff);color:#fff}
+.uic-cmd-list kbd{font-size:11px;opacity:.7}
+.uic-cmd-empty{color:var(--uic-mute,#6b6d8f)!important;cursor:default!important}
